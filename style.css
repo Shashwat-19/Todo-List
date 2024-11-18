@@ -11,18 +11,24 @@
     --teal: #24feee
 }
 
-body{
+body {
     background-color: #000430;
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+    margin: 0;
 }
 
-.container{
+.container {
+    flex: 1; /* Allow container to grow and push footer to the bottom */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     max-width: 500px;
     margin: 120px auto 0 auto;
+    padding-bottom: 20px; /* Add padding to avoid overlap with footer */
 }
 
 .stats-container{
@@ -145,4 +151,37 @@ button{
     height: 24px;
     margin: 0 10px;
     cursor: pointer;
+}
+
+.footer {
+    padding: 20px;
+    background-color: #171c48;
+    text-align: center;
+    color: #fff;
+    border-top: 2px solid #828dff;
+    font-size: 14px;
+    position: relative; /* Keeps footer at the bottom naturally */
+}
+
+.footer p {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-links a img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.social-links a img:hover {
+    transform: scale(1.2);
+    opacity: 0.8;
 }
