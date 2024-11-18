@@ -1,4 +1,4 @@
-let tasks = JSON.parse(localStorage.getItem('tasks')) || []; // Load tasks from local storage or initialize an empty array.
+let tasks = JSON.parse(localStorage.getItem('tasks')) || []; 
 
 const addTask = () => {
     const taskInput = document.getElementById('taskInput');
@@ -7,7 +7,7 @@ const addTask = () => {
     if (text) {
         tasks.push({ text: text, completed: false });
         taskInput.value = "";
-        saveTasks(); // Save updated tasks to local storage.
+        saveTasks(); 
         updateTasksList();
         updateStats();
     }
@@ -41,7 +41,7 @@ const updateTasksList = () => {
 
 const toggleTaskComplete = (index) => {
     tasks[index].completed = !tasks[index].completed;
-    saveTasks(); // Save updated tasks to local storage
+    saveTasks(); 
     updateTasksList();
     updateStats();
 };
@@ -50,18 +50,12 @@ const toggleTaskComplete = (index) => {
 
 const deleteTask = (index) => {
     tasks.splice(index, 1);
-    saveTasks(); // Save updated tasks to local storage.
+    saveTasks(); 
     updateTasksList();
     updateStats();
 };
 
 const editTask = (index) => {
-    /*const newText = prompt('Edit task:', tasks[index].text);
-    if (newText) {
-        tasks[index].text = newText.trim();
-        saveTasks(); // Save updated tasks to local storage.
-        updateTasksList();
-    }*/
    const taskInput = document.getElementById('taskInput');
    taskInput.value = tasks[index].text;
 
@@ -71,16 +65,14 @@ const editTask = (index) => {
 };
 
 const updateStats = () => {
-    const completeTasks = tasks.filter(task => task.completed).length; // Calculate completed tasks
+    const completeTasks = tasks.filter(task => task.completed).length; 
     const totalTasks = tasks.length;
-    const progress = totalTasks > 0 ? (completeTasks / totalTasks) * 100 : 0; // Avoid division by zero
+    const progress = totalTasks > 0 ? (completeTasks / totalTasks) * 100 : 0; 
 
     const progressBar = document.getElementById('progress');
-    progressBar.style.width = `${progress}%`; // Use backticks for template literals
+    progressBar.style.width = `${progress}%`; 
+    document.getElementById("number").innerText = `${completeTasks} / ${totalTasks}`; 
 
-    document.getElementById("number").innerText = `${completeTasks} / ${totalTasks}`; // Update the stats display
-
-    // Trigger confetti when all tasks are completed
     if (tasks.length && completeTasks === totalTasks) {
         console.log('Confetti blasting!');
         blastConfetti();
@@ -91,7 +83,7 @@ const updateStats = () => {
 
 
 const saveTasks = () => {
-    localStorage.setItem('tasks', JSON.stringify(tasks)); // Save tasks array as a JSON string in local storage.
+    localStorage.setItem('tasks', JSON.stringify(tasks)); 
 };
 
 document.getElementById('newTask').addEventListener('click', function (e) {
@@ -99,7 +91,6 @@ document.getElementById('newTask').addEventListener('click', function (e) {
     addTask();
 });
 
-// Initial call to render tasks when the page loads.
 updateTasksList();
 
 const blastConfetti = () => {
