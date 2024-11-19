@@ -1,73 +1,71 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-:root{
-    --background: #000430
-    --secondaryBackground: #171c48
-    --text: #fff
-    --purple: #828dff
-    --teal: #24feee
+
+:root {
+    --background: #000430;
+    --secondaryBackground: #171c48;
+    --text: #fff;
+    --purple: #828dff;
+    --teal: #24feee;
 }
 
 body {
-    background-color: #000430;
-    color: #fff;
+    background-color: var(--background);
+    color: var(--text);
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ensure body takes full viewport height */
+    min-height: 100vh;
     margin: 0;
 }
 
 .container {
-    flex: 1; /* Allow container to grow and push footer to the bottom */
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     max-width: 500px;
-    margin: 120px auto 0 auto;
-    padding-bottom: 20px; /* Add padding to avoid overlap with footer */
+    margin: 120px auto 0;
+    padding-bottom: 20px;
 }
 
-.stats-container{
+.stats-container {
     padding: 30px;
     border-radius: 20px;
-    border: 2px solid #828dff;
+    border: 2px solid var(--purple);
     display: flex;
     justify-content: space-between;
     gap: 50px;
     width: 100%;
-
 }
 
-.details{
+.details {
     width: 100%;
-
 }
 
-#progressBar{
+#progressBar {
     width: 100%;
     height: 10px;
-    background-color: #171c48;
+    background-color: var(--secondaryBackground);
     border-radius: 5px;
     margin-top: 20px;
-
 }
 
-#progress{
+#progress {
     width: 0%;
     height: 10px;
     background-color: rgb(207, 235, 235);
     border-radius: 10px;
     transition: all 0.3s ease;
 }
-    
-#number{
+
+#number {
     width: 100px;
     height: 100px;
-    background-color: #828dff;
+    background-color: var(--purple);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,24 +74,24 @@ body {
     font-weight: bold;
 }
 
-form{
+form {
     margin-top: 60px;
     width: 100%;
     display: flex;
     gap: 20px;
 }
 
-input{
+input {
     flex: 1;
     padding: 16px;
-    background-color: #171c48;
-    border: 1px solid #828dff;
+    background-color: var(--secondaryBackground);
+    border: 1px solid var(--purple);
     border-radius: 10px;
     outline: none;
-    color: #fff;
+    color: var(--text);
 }
 
-button{
+button {
     padding: 16px;
     width: 50px;
     height: 50px;
@@ -101,15 +99,15 @@ button{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #828dff;
-    color: #fff;
+    background-color: var(--purple);
+    color: var(--text);
     font-size: 30px;
     font-weight: bold;
     outline: none;
     cursor: pointer;
 }
 
-#task-list{
+#task-list {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -118,35 +116,32 @@ button{
     list-style: none;
 }
 
-.taskItem{
+.taskItem {
     width: 100%;
     display: flex;
-    background-color: #171c48;
+    background-color: var(--secondaryBackground);
     padding: 10px;
     border-radius: 30px;
     justify-content: space-between;
 }
 
-.task{
+.task {
     display: flex;
     align-items: center;
     gap: 10px;
-
 }
 
-.taskInput{
+.taskInput {
     width: 20px;
     height: 20px;
-
 }
 
-.completed p{
+.completed p {
     text-decoration: line-through;
-    color: #fff;
-
+    color: var(--text);
 }
 
-.taskItem img{
+.taskItem img {
     width: 24px;
     height: 24px;
     margin: 0 10px;
@@ -155,12 +150,12 @@ button{
 
 .footer {
     padding: 20px;
-    background-color: #171c48;
+    background-color: var(--secondaryBackground);
     text-align: center;
-    color: #fff;
-    border-top: 2px solid #828dff;
+    color: var(--text);
+    border-top: 2px solid var(--purple);
     font-size: 14px;
-    position: relative; /* Keeps footer at the bottom naturally */
+    position: relative;
 }
 
 .footer p {
@@ -187,18 +182,18 @@ button{
 }
 
 #resetTasks {
-    padding: 10px 20px; /* Adds space vertically and horizontally */
-    border-radius: 5px; /* Slightly rounded corners */
-    background-color:#828dff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: var(--purple);
     color: white;
     font-size: 16px;
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
     outline: none;
     cursor: pointer;
-    margin-left: 10px; /* Adds spacing between buttons */
-    width: auto; /* Ensures the button's width is determined by its content */
-    text-align: center; /* Centers the text within the button */
+    margin-left: 10px;
+    width: auto;
+    text-align: center;
 }
 
 #resetTasks:hover {
@@ -210,28 +205,27 @@ button{
 .modal {
     display: none;
     position: fixed;
-    z-index: 9999; /* Ensure the modal is on top */
+    z-index: 9999;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgba(0, 0, 0, 0.8); /* Black with transparency */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
     justify-content: center;
     align-items: center;
 }
 
-
 .modal-content {
-    background-color: #171c48;
+    background-color: var(--secondaryBackground);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    color: #fff;
+    color: var(--text);
     max-width: 300px;
     width: 90%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     display: flex;
-    flex-direction: column; /* Align items vertically */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -242,18 +236,112 @@ button{
 }
 
 .modal-content button {
-    padding: 10px 40px; /* Wider padding for a rectangle shape */
-    background-color: #828dff;
+    padding: 10px 40px;
+    background-color: var(--purple);
     color: white;
     border: none;
-    border-radius: 2px; /* Slightly rounded corners, or use 0 for sharp corners */
+    border-radius: 2px;
     font-size: 16px;
     cursor: pointer;
-    margin-top: 20px; /* Add spacing from the text */
+    margin-top: 20px;
 }
 
 .modal-content button:hover {
     background-color: #5b6efb;
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        margin: 60px auto 0;
+        padding: 10px;
+    }
 
+    .stats-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+    }
+
+    form {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 30px;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+    }
+
+    button {
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+    }
+
+    #task-list {
+        margin-top: 20px;
+    }
+
+    .footer {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .footer p {
+        font-size: 14px;
+    }
+
+    .social-links a img {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin: 30px auto 0;
+        padding: 5px;
+    }
+
+    .stats-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 10px;
+    }
+
+    .details {
+        text-align: center;
+    }
+
+    #progressBar {
+        margin-top: 10px;
+    }
+
+    #number {
+        font-size: 25px;
+        width: 80px;
+        height: 80px;
+    }
+
+    form {
+        gap: 8px;
+    }
+
+    button {
+        font-size: 20px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .footer {
+        padding: 8px;
+    }
+
+    .social-links a img {
+        width: 20px;
+        height: 20px;
+    }
+}
