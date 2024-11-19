@@ -192,6 +192,7 @@ button{
     background-color:#828dff;
     color: white;
     font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
     outline: none;
     cursor: pointer;
