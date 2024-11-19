@@ -185,3 +185,24 @@ button{
     transform: scale(1.2);
     opacity: 0.8;
 }
+
+#resetTasks {
+    padding: 10px 20px; /* Adds space vertically and horizontally */
+    border-radius: 5px; /* Slightly rounded corners */
+    background-color:#828dff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+    margin-left: 10px; /* Adds spacing between buttons */
+    width: auto; /* Ensures the button's width is determined by its content */
+    text-align: center; /* Centers the text within the button */
+}
+
+#resetTasks:hover {
+    background-color: rgb(102, 0, 139);
+    transform: scale(1.05);
+    transition: all 0.2s ease;
+}
+

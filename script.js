@@ -134,3 +134,11 @@ fire(0.1, {
   startVelocity: 45,
 });
 };
+
+document.getElementById('resetTasks').addEventListener('click', function () {
+    tasks = []; // Clear all tasks
+    saveTasks(); // Save the empty task list to localStorage
+    updateTasksList(); // Update the task list on the page
+    updateStats(); // Update stats to reflect no tasks
+    document.getElementById('taskInput').value = ""; // Clear input field
+});
