@@ -64,6 +64,9 @@ const editTask = (index) => {
    updateStats();
 };
 
+const motivationalModal = document.getElementById('motivationalModal');
+const closeModalButton = document.getElementById('closeModal');
+
 const updateStats = () => {
     const completeTasks = tasks.filter(task => task.completed).length; 
     const totalTasks = tasks.length;
@@ -76,8 +79,18 @@ const updateStats = () => {
     if (tasks.length && completeTasks === totalTasks) {
         console.log('Confetti blasting!');
         blastConfetti();
+        showMotivationalModal(); // Show popup
     }
 };
+
+const showMotivationalModal = () => {
+    motivationalModal.style.display = 'flex';
+};
+
+// Close the modal when the button is clicked
+closeModalButton.addEventListener('click', () => {
+    motivationalModal.style.display = 'none';
+});
 
 
 
@@ -142,3 +155,5 @@ document.getElementById('resetTasks').addEventListener('click', function () {
     updateStats(); // Update stats to reflect no tasks
     document.getElementById('taskInput').value = ""; // Clear input field
 });
+
+

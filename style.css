@@ -59,7 +59,7 @@ body {
 #progress{
     width: 0%;
     height: 10px;
-    background-color: teal;
+    background-color: rgb(207, 235, 235);
     border-radius: 10px;
     transition: all 0.3s ease;
 }
@@ -206,4 +206,53 @@ button{
     transform: scale(1.05);
     transition: all 0.2s ease;
 }
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* On top of other elements */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.8); /* Black with transparency */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #171c48;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    color: #fff;
+    max-width: 300px;
+    width: 90%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.modal-content button {
+    padding: 10px 40px; /* Wider padding for a rectangle shape */
+    background-color: #828dff;
+    color: white;
+    border: none;
+    border-radius: 2px; /* Slightly rounded corners, or use 0 for sharp corners */
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px; /* Add spacing from the text */
+}
+
+.modal-content button:hover {
+    background-color: #5b6efb;
+}
+
 
