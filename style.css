@@ -208,9 +208,9 @@ button{
 }
 
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1000; /* Lower than the confetti canvas */
+    display: none;
+    position: fixed;
+    z-index: 9999; /* Ensure the modal is on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */

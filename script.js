@@ -115,6 +115,7 @@ const setConfettiCanvasZIndex = () => {
 };
 
 
+
 const blastConfetti = () => {
     const count = 200,
         defaults = {
