@@ -210,7 +210,7 @@ button{
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1000; /* On top of other elements */
+    z-index: 1000; /* Lower than the confetti canvas */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -219,6 +219,7 @@ button{
     justify-content: center;
     align-items: center;
 }
+
 
 .modal-content {
     background-color: #171c48;

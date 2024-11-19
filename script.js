@@ -106,47 +106,60 @@ document.getElementById('newTask').addEventListener('click', function (e) {
 
 updateTasksList();
 
+const setConfettiCanvasZIndex = () => {
+    const confettiCanvas = document.querySelector('canvas.confetti-container');
+    if (confettiCanvas) {
+        confettiCanvas.style.zIndex = '1100'; // Ensure it is above the modal
+        confettiCanvas.style.position = 'fixed'; // Ensure proper positioning
+    }
+};
+
+
 const blastConfetti = () => {
     const count = 200,
-  defaults = {
-    origin: { y: 0.7 },
-  };
+        defaults = {
+            origin: { y: 0.7 },
+        };
 
-function fire(particleRatio, opts) {
-  confetti(
-    Object.assign({}, defaults, opts, {
-      particleCount: Math.floor(count * particleRatio),
-    })
-  );
-}
+    function fire(particleRatio, opts) {
+        confetti(
+            Object.assign({}, defaults, opts, {
+                particleCount: Math.floor(count * particleRatio),
+            })
+        );
+    }
 
-fire(0.25, {
-  spread: 26,
-  startVelocity: 55,
-});
+    fire(0.25, {
+        spread: 26,
+        startVelocity: 55,
+    });
 
-fire(0.2, {
-  spread: 60,
-});
+    fire(0.2, {
+        spread: 60,
+    });
 
-fire(0.35, {
-  spread: 100,
-  decay: 0.91,
-  scalar: 0.8,
-});
+    fire(0.35, {
+        spread: 100,
+        decay: 0.91,
+        scalar: 0.8,
+    });
 
-fire(0.1, {
-  spread: 120,
-  startVelocity: 25,
-  decay: 0.92,
-  scalar: 1.2,
-});
+    fire(0.1, {
+        spread: 120,
+        startVelocity: 25,
+        decay: 0.92,
+        scalar: 1.2,
+    });
 
-fire(0.1, {
-  spread: 120,
-  startVelocity: 45,
-});
+    fire(0.1, {
+        spread: 120,
+        startVelocity: 45,
+    });
+
+    // Ensure the confetti canvas is on top
+    setConfettiCanvasZIndex();
 };
+
 
 document.getElementById('resetTasks').addEventListener('click', function () {
     tasks = []; // Clear all tasks
