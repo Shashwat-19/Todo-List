@@ -46,12 +46,6 @@ This To-Do List App allows users to manage their tasks with simple actions such 
 7. **saveTasks()**: Saves the tasks array to localStorage as a JSON string.
 8. **blastConfetti()**: Triggers a confetti animation when all tasks are completed.
 
-### Styling
-
-- **Minimal and sleek UI** designed with a dark theme and contrasting colors.
-- **Flexbox Layout** is used to align elements such as tasks and the footer, ensuring a clean and responsive design.
-- **CSS Animations** for smooth transitions when interacting with tasks (e.g., checkboxes and buttons).
-
 ## Demo
 
 You can try out the To-Do List App directly by visiting the live demo [Live](https://shashwat-19.github.io/Todo-List/).
