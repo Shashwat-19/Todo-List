@@ -240,7 +240,7 @@ button {
     background-color: var(--purple);
     color: white;
     border: none;
-    border-radius: 2px;
+    border-radius: 32px;
     font-size: 16px;
     cursor: pointer;
     margin-top: 20px;
