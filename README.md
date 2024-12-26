@@ -1,68 +1,119 @@
-# To-Do List App
+# To-Do List App 📅
 
-This To-Do List App allows users to manage their tasks with simple actions such as adding, editing, completing, and deleting tasks. The app features a progress tracker, a confetti celebration when all tasks are completed, and persistence of data across sessions using **localStorage**.
-
-## Features
-
-- **Add Tasks:** Quickly add tasks to your to-do list by typing in the input field.
-- **Edit Tasks:** You can edit tasks by clicking the edit icon next to each task.
-- **Complete Tasks:** Mark tasks as completed by checking the checkbox, which updates the progress bar.
-- **Delete Tasks:** Delete tasks from the list by clicking the trash icon next to them.
-- **Task Stats:** See the total number of tasks and how many are completed, represented visually with a progress bar.
-- **Confetti Celebration:** When all tasks are marked as complete, a confetti animation will play as a celebration!
-
-## Technologies Used
-
-- **JavaScript:** Used for handling the tasks' logic, including adding, editing, deleting, and marking tasks as complete.
-- **HTML/CSS:** For creating the structure and styling the interface of the app.
-- **localStorage:** Used to store tasks persistently across page reloads.
-
-## How It Works
-
-- **Adding Tasks:** The user enters a task in the input field and clicks the 'Add' button. The task is added to the list and stored in the browser's localStorage.
-- **Task Display:** The app renders the list of tasks dynamically and allows users to interact with each task (edit, delete, complete).
-- **Task Completion:** When a task is completed, the task's text gets a strike-through effect and updates the progress bar.
-- **Editing Tasks:** If you want to edit a task, clicking the edit icon will populate the input field with the current task's text. After editing, the task will be updated.
-- **Stats and Progress:** The number of tasks completed is shown, and the progress bar visually represents how much of the to-do list has been completed.
-- **Confetti Effect:** If all tasks are completed, a confetti effect is triggered, celebrating the accomplishment!
-
-## How to Use
-
-1. Clone or download the repository.
-2. Open the `index.html` file in a web browser.
-3. Add, complete, edit, or delete tasks to see the functionality in action.
-4. Reload the page, and your tasks will persist because they are stored in `localStorage`.
-
-## Code Walkthrough
-
-### Task Management Functions
-
-1. **addTask()**: Adds a new task to the list, updates the localStorage, and re-renders the list of tasks.
-2. **updateTasksList()**: Renders the tasks to the page, creating checkboxes and icons for each task.
-3. **toggleTaskComplete()**: Toggles the completion status of a task and updates the progress.
-4. **deleteTask()**: Deletes a task from the list and updates localStorage.
-5. **editTask()**: Allows editing of tasks, populating the input field with the current task's text.
-6. **updateStats()**: Updates the number of completed tasks and adjusts the progress bar. Triggers confetti when all tasks are completed.
-7. **saveTasks()**: Saves the tasks array to localStorage as a JSON string.
-8. **blastConfetti()**: Triggers a confetti animation when all tasks are completed.
-
-### Styling
-
-- **Minimal and sleek UI** designed with a dark theme and contrasting colors.
-- **Flexbox Layout** is used to align elements such as tasks and the footer, ensuring a clean and responsive design.
-- **CSS Animations** for smooth transitions when interacting with tasks (e.g., checkboxes and buttons).
-
-## Demo
-
-You can try out the To-Do List App directly by visiting the live demo [Live](https://shashwat-19.github.io/Todo-List/).
-
-## Links
-
-- [GitHub Repository](https://github.com/Shashwat-19/Todo-List)  
-- [LinkedIn](https://www.linkedin.com/in/shashwatk1956/)  
-- [Instagram](https://www.instagram.com/shashwat.56/)  
-
+Welcome to **To-Do List App** – a simple and interactive task management application built with JavaScript! This project helps users stay organized by allowing them to add, edit, complete, and delete tasks seamlessly. With progress tracking and fun celebratory animations, managing tasks has never been more engaging.
 
 ---
 
-Enjoy managing your tasks with this simple and fun to-do list app! 🎉
+## ✨ Features
+
+- **Add Tasks** – Quickly add tasks to your list through an input field.
+- **Edit Tasks** – Modify tasks easily by clicking the edit icon.
+- **Complete Tasks** – Mark tasks as complete and track progress visually.
+- **Delete Tasks** – Remove tasks with a simple click.
+- **Task Statistics** – View the total number of tasks and completion status.
+- **Confetti Celebration** – Celebrate your achievements with a confetti animation upon full task completion.
+- **Persistent Storage** – Tasks persist across sessions using **localStorage**.
+
+---
+
+## 📸 Screenshots
+
+🛠️ *App Interface* –
+<p align="center">
+  <img src="https://github.com/Shashwat-19/Todo-List/raw/main/interface-1.png" width="45%"/>
+  <img src="https://github.com/Shashwat-19/Todo-List/raw/main/interface-2.png" width="45%"/>
+</p>
+
+---
+
+## 🛠️ Installation Guide
+
+1. **Clone the Repository**:
+```bash
+   git clone https://github.com/Shashwat-19/Todo-List.git
+```
+Navigate to the Project Directory:
+```bash
+   cd Todo-List
+```
+Open the App in Browser:
+```bash
+   open index.html
+```
+   
+## 📋 Requirements
+- **Web Browser** – Any modern browser (Chrome, Firefox, Edge, etc.).
+- **Text Editor (Optional)** – VS Code, Sublime Text, or Notepad++ for customization.
+
+---
+
+## 🗫️ Usage
+
+1. Open the `index.html` file in your browser.
+2. Add tasks by typing into the input field and clicking 'Add'.
+3. Edit or delete tasks using the icons next to each task.
+4. Mark tasks complete by checking the box.
+5. Enjoy a confetti celebration when all tasks are done!
+
+---
+
+## 📚 Tech Stack
+
+- **Language** – JavaScript 🔖
+- **Structure and Styling** – HTML / CSS
+- **Data Persistence** – localStorage (for saving tasks)
+
+---
+
+## 🚀 Roadmap
+
+- [ ] Implement due dates for tasks
+- [ ] Add category filtering
+- [ ] Enable drag-and-drop task reordering
+- [ ] Develop a mobile-friendly version
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Here's how you can contribute:
+
+1. **Fork the repository**
+2. **Create a new branch**:
+```bash
+   git checkout -b feature/new-feature
+```
+3. **Make your changes and commit**:
+```bash
+   git commit -m 'Add new feature'
+```
+4. **Push to the branch**:
+```bash
+   git push origin feature/new-feature
+```
+5. **Open a Pull Request**
+
+---
+
+## 🔍 Issues and Support
+
+If you encounter any issues, please raise an issue in the GitHub repository. We appreciate your feedback and will address any problems promptly.
+
+---
+
+## 🔒 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+---
+
+## 📩 Contact
+
+**Shashwat**  
+BCA (Hons), Christ University, Bangalore  
+[GitHub](https://github.com/Shashwat-19) | [LinkedIn](https://www.linkedin.com/in/shashwatk1956/) | [Email me](shashwat1956@gmail.com)  
+
+---
+
+Thank you for using the **To-Do List App**! 🎉
+
