@@ -50,6 +50,13 @@ Open the App in Browser:
 
 ---
 
+## 🚀 Live Demo
+
+Try out the To-Do List App directly by visiting:<br>
+👉 [Live Demo](https://shashwat-19.github.io/Todo-List/)
+
+---
+
 ## 🗫️ Usage
 
 1. Open the `index.html` file in your browser.
