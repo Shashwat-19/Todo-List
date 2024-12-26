@@ -20,8 +20,11 @@ Welcome to **To-Do List App** – a simple and interactive task management appli
 
 🛠️ *App Interface* –
 <p align="center">
-  <img src="https://github.com/Shashwat-19/Todo-List/raw/main/interface-1.png" width="45%"/>
-  <img src="https://github.com/Shashwat-19/Todo-List/raw/main/interface-2.png" width="45%"/>
+  <img src="https://github.com/Shashwat-19/Todo-List/raw/main/List.png" width="45%"/>
+  <img src="https://github.com/Shashwat-19/Todo-List/raw/main/Progressbar.png" width="45%"/>
+  <img src="https://github.com/Shashwat-19/Todo-List/raw/main/editing.png" width="45%"/>
+  <img src="https://github.com/Shashwat-19/Todo-List/raw/main/deletedone.png" width="45%"/>
+  <img src="https://github.com/Shashwat-19/Todo-List/raw/main/completition.png" width="45%"/>
 </p>
 
 ---
