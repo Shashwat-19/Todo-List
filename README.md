@@ -29,23 +29,6 @@ Welcome to **To-Do List App** – a simple and interactive task management appli
 
 ---
 
-## 🛠️ Installation Guide
-
-1. **Clone the Repository**:
-```bash
-   git clone https://github.com/Shashwat-19/Todo-List.git
-```
-Navigate to the Project Directory:
-```bash
-   cd Todo-List
-```
-Open the App in Browser:
-```bash
-   open index.html
-```
-   
----
-
 ## 🚀 Live Demo
 
 Try out the To-Do List App directly by visiting:<br>
