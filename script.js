@@ -26,8 +26,8 @@ const updateTasksList = () => {
                 <p>${task.text}</p>
             </div>
             <div class="icons">
-                <img src="./edit.png" onClick="editTask(${index})" />
-                <img src="./bin.png" onClick="deleteTask(${index})" />
+                <img src="./assets/edit.png" onClick="editTask(${index})" />
+                <img src="./assets/bin.png" onClick="deleteTask(${index})" />
             </div>
         </div>
         `;
@@ -167,7 +167,7 @@ document.getElementById('resetTasks').addEventListener('click', function () {
     saveTasks(); // Save the empty task list to localStorage
     updateTasksList(); // Update the task list on the page
     updateStats(); // Update stats to reflect no tasks
-    document.getElementById('taskInput').value = ""; // Clear input field
+    document.getElementById('taskInput').value = ""; 
 });
 
 
