@@ -44,10 +44,6 @@ Open the App in Browser:
    open index.html
 ```
    
-## 📋 Requirements
-- **Web Browser** – Any modern browser (Chrome, Firefox, Edge, etc.).
-- **Text Editor (Optional)** – VS Code, Sublime Text, or Notepad++ for customization.
-
 ---
 
 ## 🚀 Live Demo
@@ -75,15 +71,6 @@ Try out the To-Do List App directly by visiting:<br>
 
 ---
 
-## 🚀 Roadmap
-
-- [ ] Implement due dates for tasks
-- [ ] Add category filtering
-- [ ] Enable drag-and-drop task reordering
-- [ ] Develop a mobile-friendly version
-
----
-
 ## 🤝 Contributing
 
 Contributions are welcome! Here's how you can contribute:
@@ -102,12 +89,6 @@ Contributions are welcome! Here's how you can contribute:
    git push origin feature/new-feature
 ```
 5. **Open a Pull Request**
-
----
-
-## 🔍 Issues and Support
-
-If you encounter any issues, please raise an issue in the GitHub repository. We appreciate your feedback and will address any problems promptly.
 
 ---
 
