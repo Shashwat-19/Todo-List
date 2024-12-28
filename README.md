@@ -78,8 +78,8 @@ Contributions are welcome! Here's how you can contribute:
 ## 🔒 License
 
 Copyright (C) 2023-2024 Shashwat
-
 This project is licensed under the GNU General Public License v3.0 (GPL-3.0). See the [LICENSE](LICENSE) file for details.
+
 ---
 
 ## 📩 Contact
