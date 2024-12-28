@@ -4,7 +4,7 @@
 
 Thank you for improving the security of SmartCar-Care. We take security issues seriously and appreciate your efforts to disclose vulnerabilities responsibly.
 
-If you discover a security vulnerability in SmartCar-Care, please report it privately to [your-email@example.com]. Please include a detailed description of the issue, along with steps to reproduce it.
+If you discover a security vulnerability in SmartCar-Care, please report it privately to [Email](shashwat1956.@gmail.com). Please include a detailed description of the issue, along with steps to reproduce it.
 
 We will acknowledge your report within 48 hours and work with you to understand and resolve the issue quickly. Public disclosure will not happen until a fix is in place and thoroughly tested.
 
