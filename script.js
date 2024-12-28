@@ -46,8 +46,6 @@ const toggleTaskComplete = (index) => {
     updateStats();
 };
 
-
-
 const deleteTask = (index) => {
     tasks.splice(index, 1);
     saveTasks(); 
@@ -87,13 +85,9 @@ const showMotivationalModal = () => {
     motivationalModal.style.display = 'flex';
 };
 
-// Close the modal when the button is clicked
 closeModalButton.addEventListener('click', () => {
     motivationalModal.style.display = 'none';
 });
-
-
-
 
 const saveTasks = () => {
     localStorage.setItem('tasks', JSON.stringify(tasks)); 
@@ -105,6 +99,7 @@ document.getElementById('newTask').addEventListener('click', function (e) {
 });
 
 updateTasksList();
+updateStats(); // Ensure stats are updated on load
 
 const setConfettiCanvasZIndex = () => {
     const confettiCanvas = document.querySelector('canvas.confetti-container');
@@ -113,8 +108,6 @@ const setConfettiCanvasZIndex = () => {
         confettiCanvas.style.position = 'fixed'; // Ensure proper positioning
     }
 };
-
-
 
 const blastConfetti = () => {
     const count = 200,
@@ -157,17 +150,13 @@ const blastConfetti = () => {
         startVelocity: 45,
     });
 
-    // Ensure the confetti canvas is on top
     setConfettiCanvasZIndex();
 };
 
-
 document.getElementById('resetTasks').addEventListener('click', function () {
-    tasks = []; // Clear all tasks
-    saveTasks(); // Save the empty task list to localStorage
-    updateTasksList(); // Update the task list on the page
-    updateStats(); // Update stats to reflect no tasks
+    tasks = []; 
+    saveTasks(); 
+    updateTasksList(); 
+    updateStats(); 
     document.getElementById('taskInput').value = ""; 
 });
-
-
