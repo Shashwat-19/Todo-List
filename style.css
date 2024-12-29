@@ -21,6 +21,12 @@ body {
     margin: 0;
 }
 
+main {
+    flex: 1;
+    overflow-y: auto;
+}
+
+
 .container {
     flex: 1;
     display: flex;
@@ -149,13 +155,15 @@ button {
 }
 
 .footer {
-    padding: 20px;
+    padding: 20px 0;
     background-color: var(--secondaryBackground);
     text-align: center;
     color: var(--text);
     border-top: 2px solid var(--purple);
     font-size: 14px;
-    position: relative;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 .footer p {
@@ -345,3 +353,5 @@ button {
         height: 20px;
     }
 }
+
+

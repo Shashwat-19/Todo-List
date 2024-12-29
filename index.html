@@ -8,35 +8,39 @@
     <link rel="icon" type="image/png" href="./assets/icon.png">
 </head>
 <body>
-    <div class="container">
-        <div class="stats-container">
-            <div class="details">
-                <h1>Todo app</h1>
-                <p>Keep it up.!</p>
-                <div id="progressBar">
-                    <div id="progress"></div>
+    <main>
+        <div class="container">
+            <div class="stats-container">
+                <div class="details">
+                    <h1>Todo app</h1>
+                    <p>Keep it up.!</p>
+                    <div id="progressBar">
+                        <div id="progress"></div>
+                    </div>
+                </div>
+                <div class="stats-numbers">
+                    <p id="number">0 / 0</p>
                 </div>
             </div>
-            <div class="stats-numbers">
-                <p id="number">0 / 0</p>
+    
+            <form action="">
+                <input type="text" id="taskInput" placeholder="Enter task">
+                <button id="newTask" type="submit">+</button>
+                <button id="resetTasks" type="button">Reset</button>
+            </form>
+    
+            <ul id="task-list"></ul>
+        </div>
+
+        
+    
+        <div id="motivationalModal" class="modal">
+            <div class="modal-content">
+                <p>Great Job! 🎉 Keep up the good work!</p>
+                <button id="closeModal">Close</button>
             </div>
         </div>
-
-        <form action="">
-            <input type="text" id="taskInput" placeholder="Enter task">
-            <button id="newTask" type="submit">+</button>
-            <button id="resetTasks" type="button">Reset</button>
-        </form>
-
-        <ul id="task-list"></ul>
-    </div>
-
-    <div id="motivationalModal" class="modal">
-        <div class="modal-content">
-            <p>Great Job! 🎉 Keep up the good work!</p>
-            <button id="closeModal">Close</button>
-        </div>
-    </div>
+    </main>
     
     
 
