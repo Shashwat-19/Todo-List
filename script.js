@@ -62,6 +62,9 @@ const editTask = (index) => {
    updateStats();
 };
 
+const taskList = document.getElementById('task-list');
+taskList.scrollTop = taskList.scrollHeight;
+
 const motivationalModal = document.getElementById('motivationalModal');
 const closeModalButton = document.getElementById('closeModal');
 

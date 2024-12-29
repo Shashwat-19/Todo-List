@@ -24,6 +24,7 @@ body {
 main {
     flex: 1;
     overflow-y: auto;
+    padding-bottom: 100px; /* Allow space for footer */
 }
 
 
@@ -120,6 +121,8 @@ button {
     margin-top: 30px;
     width: 100%;
     list-style: none;
+    overflow-y: auto;  /* Add vertical scrolling */
+    max-height: calc(100vh - 120px);  /* Adjust max height based on footer height */
 }
 
 .taskItem {
@@ -164,6 +167,7 @@ button {
     position: fixed;
     bottom: 0;
     width: 100%;
+    z-index: 100;
 }
 
 .footer p {
