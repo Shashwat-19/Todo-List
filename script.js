@@ -23,7 +23,7 @@ const updateTasksList = () => {
         <div class="taskItem">
             <div class="task ${task.completed ? 'completed' : ''}">
                 <input type="checkbox" class="checkbox" ${task.completed ? 'checked' : ''} />
-                <p>${task.text}</p>
+                <p><strong>${index + 1}.</strong> ${task.text}</p>
             </div>
             <div class="icons">
                 <img src="./assets/edit.png" onClick="editTask(${index})" />
