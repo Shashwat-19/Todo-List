@@ -31,6 +31,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
+    padding: 0;
 }
 
 main {
@@ -146,6 +147,7 @@ button {
     justify-content: space-between;
 }
 
+
 .task {
     display: flex;
     align-items: center;
@@ -205,9 +207,15 @@ button {
     opacity: 0.8;
 }
 
+#newTask {
+    width: auto;
+    border-radius: 32px; 
+    margin-left: 10px;
+}
+
 #resetTasks {
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 32px;
     background-color: var(--purple);
     color: white;
     font-size: 16px;
@@ -223,7 +231,36 @@ button {
 #resetTasks:hover {
     background-color: rgb(102, 0, 139);
     transform: scale(1.05);
-    transition: all 0.2s ease;
+    transition: all 0.2s ease;;
+}
+
+@media screen and (max-width: 768px) {
+    #newTask {
+        width: 50%; /* Set + button width to 50% */
+    }
+
+    #resetTasks {
+        display: inline-block; /* Show reset button */
+    }
+
+    .theme-switch {
+        display: inline-block; /* Show theme toggle button */
+    }
+}
+
+/* Media queries for mobile screens */
+@media screen and (max-width: 480px) {
+    #newTask {
+        width: 50%; /* Keep the + button at 50% width */
+    }
+
+    #resetTasks {
+        display: inline-block; /* Show reset button */
+    }
+
+    .theme-switch {
+        display: inline-block; /* Show theme toggle button */
+    }
 }
 
 .modal {
@@ -390,7 +427,7 @@ button {
     --transition: .5s cubic-bezier(0, -0.02, 0.4, 1.25);
     --circle-transition: .3s cubic-bezier(0, -0.02, 0.35, 1.17);
     position: fixed;
-    top: 110px;
+    top: 90px;
     right: 105px;
     z-index: 1000;
     display: flex;
@@ -590,5 +627,37 @@ button {
     transform: translateY(-50%);
 }
 
+/* Media Queries for responsiveness */
+@media (max-width: 1200px) {
+    .container {
+        margin: 40px auto;
+        padding: 15px;
+    }
 
+    .stats-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    form {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+    }
+
+    button {
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
+    }
+
+    #task-list {
+        margin-top: 20px;
+    }
+}
 
