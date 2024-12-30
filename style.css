@@ -496,12 +496,33 @@ button {
 
 /* Mobile Specific Styles */
 @media (max-width: 768px) {
+    .theme-switch {
+        position: relative; /* Removed fixed positioning for scrollable behavior */
+    }
     .theme-switch__container {
-        position: absolute;
-        top: 244px; /* Adjust the percentage as needed */
-        left: 0.px; /* Adjust the position */
-        width: 170px; /* Ensure the width remains consistent */
-        margin-top: 0; /* Remove the default margin-top on mobile */
+        position: relative;
+        top: 35px; /* Adjust the percentage as needed */
+        left: 210px; /* Adjust the position */
+        width: 160px; /* Ensure the width remains consistent */
+        margin-top: 0;  /* Remove the default margin-top on mobile */
+    }
+
+    .theme-switch-label {
+        display: none;
+    }
+}
+
+/* Tablet and Small Laptop Specific Styles (768px to 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .theme-switch {
+        position: fixed; /* Fix the button in place on tablets */
+    }
+    .theme-switch__container {
+        position: relative;
+        top: 35px; /* Adjust position for tablets */
+        left: 60%; /* Center horizontally on tablet */
+        width: 120px; /* Suitable width for tablets */
+        margin-top: 0; /* Remove default margin-top */
     }
 
     .theme-switch-label {
