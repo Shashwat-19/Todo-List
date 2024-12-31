@@ -13,6 +13,8 @@ Welcome to **To-Do List App** – a simple and interactive task management appli
 - **Task Statistics** – View the total number of tasks and completion status.
 - **Confetti Celebration** – Celebrate your achievements with a confetti animation upon full task completion.
 - **Persistent Storage** – Tasks persist across sessions using **localStorage**.
+- **Dark Mode** – Switch between light and dark themes with the click of a button.
+- **Task Counter** – Track the total tasks and completed tasks directly from the interface.
 
 ---
 
@@ -36,6 +38,18 @@ Try out the To-Do List App directly by visiting:<br>
 
 ---
 
+## 🚀 Release v0.2.beta - Lights Out, Tasks Up!  
+
+Welcome to the latest update of **To-Do List App** – v0.2.beta! This release focuses on enhancing user experience with **Dark Mode**, refined **icons**, and a **task counter** to help you track your productivity better.
+
+### 🎯 What's New in v0.2.beta
+
+- **Dark Mode** – Toggle between light and dark themes for comfortable task management.
+- **Updated Icons** – Intuitive and fresh icons for a modern look.
+- **Task Counter** – Displays the total and completed tasks.
+
+---
+
 ## 🗫️ Usage
 
 1. Open the `index.html` file in your browser.
@@ -43,6 +57,7 @@ Try out the To-Do List App directly by visiting:<br>
 3. Edit or delete tasks using the icons next to each task.
 4. Mark tasks complete by checking the box.
 5. Enjoy a confetti celebration when all tasks are done!
+6. Use the **Dark Mode** button to switch between light and dark modes.
 
 ---
 
@@ -77,7 +92,7 @@ Contributions are welcome! Here's how you can contribute:
 
 ## 🔒 License
 
-Copyright (C) 2023-2024 Shashwat<br>
+Copyright (C) 2023-2024 Shashwat<br><br>
 This project is licensed under the GNU General Public License v3.0 (GPL-3.0). See the [LICENSE](LICENSE) file for details.
 
 ---
