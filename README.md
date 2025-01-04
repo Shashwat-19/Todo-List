@@ -37,16 +37,15 @@ Try out the To-Do List App directly by visiting:<br>
 👉 [Live Demo](https://shashwat-19.github.io/Todo-List/)
 
 ---
+## 📦 Latest Release: [v0.2.beta](https://github.com/Shashwat-19/Todo-List/releases/tag/v0.2-beta)
 
-## 🚀 Release v0.2.beta - Lights Out, Tasks Up!  
+To-Do List App v0.2.beta is live! 🎉  
 
-Welcome to the latest update of **To-Do List App** – v0.2.beta! This release focuses on enhancing user experience with **Dark Mode**, refined **icons**, and a **task counter** to help you track your productivity better.
+### What's New
+- **Dark Mode** – Switch between light and dark themes.  
+- **Updated Icons** – Fresh and intuitive icons.  
+- **Task Counter** – Track total and completed tasks.  
 
-### 🎯 What's New in v0.2.beta
-
-- **Dark Mode** – Toggle between light and dark themes for comfortable task management.
-- **Updated Icons** – Intuitive and fresh icons for a modern look.
-- **Task Counter** – Displays the total and completed tasks.
 
 ---
 
