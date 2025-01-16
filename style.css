@@ -772,6 +772,12 @@ button {
     transition: all 0.3s ease;
 }
 
+/* Dark mode styling */
+body.dark-mode .status-dropdown {
+    background-color: #d3d3d3; /* Light gray background in dark mode */
+    color: #333; /* Dark text color for readability */
+}
+
 /* Hover effect for the dropdown */
 .status-dropdown:hover {
     border-color: #888;
