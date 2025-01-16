@@ -140,14 +140,20 @@ button {
     max-height: calc(100vh - 120px);  /* Adjust max height based on footer height */
 }
 
+
 .taskItem {
-    width: 100%;
     display: flex;
+    align-items: center; /* Vertically align items */
+    justify-content: space-between; /* Spread items evenly */
+    padding: 8px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
     background-color: var(--secondaryBackground);
-    padding: 10px;
+    width: 100%;
     border-radius: 30px;
-    justify-content: space-between;
+    padding: 10px;
 }
+
 
 .task-status {
     margin-top: 5px;
@@ -163,6 +169,11 @@ button {
     display: inline-block;
 }
 
+.taskItem .checkbox {
+    margin-right: 10px; /* Add space between checkbox and text */
+    transform: scale(1.2); /* Slightly enlarge the checkbox */
+    cursor: pointer;
+}
 
 .task {
     display: flex;
@@ -747,4 +758,70 @@ button {
     }
 }
 
+/* General style for the dropdown */
+.status-dropdown {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    padding: 6px 8px;
+    background-color: #f0f0f0; /* Light gray background */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 110px; /* Medium width */
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
+/* Hover effect for the dropdown */
+.status-dropdown:hover {
+    border-color: #888;
+}
+
+/* Focus effect for the dropdown */
+.status-dropdown:focus {
+    outline: none;
+    border-color: #007BFF;
+}
+
+/* Custom styling for options */
+.status-dropdown option {
+    padding: 5px;
+    font-size: 4px;
+}
+
+/* Style for the Not Started option */
+.status-dropdown option[value="not-started"] {
+    background-color: #ffebee; 
+    color: #d32f2f; 
+}
+
+/* Style for the In Progress option */
+.status-dropdown option[value="in-progress"] {
+    background-color: #fff3e0;
+    color: #f57c00; 
+}
+
+
+.status-dropdown option[value="completed"] {
+    background-color: #e8f5e9; 
+    color: #388e3c;
+}
+
+/* Style for the selected status */
+.status-dropdown:focus option:selected {
+    font-weight: bold;
+}
+
+/* Responsive design: Adjust width on smaller screens */
+@media (max-width: 600px) {
+    .status-dropdown {
+        width: 100%;
+    }
+}
+
+
+/* Hide dropdown and status for smaller screens */
+@media (max-width: 768px) {
+    .task-status, .status-dropdown {
+        display: none;
+    }
+}
