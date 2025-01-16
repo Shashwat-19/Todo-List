@@ -1,4 +1,4 @@
-let tasks = JSON.parse(localStorage.getItem('tasks')) || []; 
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 const options = ['Not Started', 'In Progress', 'Completed'];
 
@@ -9,7 +9,7 @@ const addTask = () => {
     if (text) {
         tasks.push({ text: text, completed: false, status: 'not-started' });
         taskInput.value = "";
-        saveTasks(); 
+        saveTasks();
         updateTasksList();
         updateStats();
     }
@@ -69,13 +69,22 @@ const getStatusText = (status) => {
 
 const toggleTaskComplete = (index) => {
     tasks[index].completed = !tasks[index].completed;
-    saveTasks(); 
+    if (tasks[index].completed) {
+        tasks[index].status = 'completed';
+    } else {
+        tasks[index].status = 'not-started';
+    }
+    saveTasks();
     updateTasksList();
     updateStats();
 };
 
 const updateTaskStatus = (index, status) => {
     tasks[index].status = status;
+
+    // Automatically check or uncheck the task based on the status
+    tasks[index].completed = status === 'completed';
+
     saveTasks();
     updateTasksList();
     updateStats();
@@ -83,7 +92,7 @@ const updateTaskStatus = (index, status) => {
 
 const deleteTask = (index) => {
     tasks.splice(index, 1);
-    saveTasks(); 
+    saveTasks();
     updateTasksList();
     updateStats();
 };
@@ -104,13 +113,13 @@ const motivationalModal = document.getElementById('motivationalModal');
 const closeModalButton = document.getElementById('closeModal');
 
 const updateStats = () => {
-    const completeTasks = tasks.filter(task => task.completed).length; 
+    const completeTasks = tasks.filter(task => task.completed).length;
     const totalTasks = tasks.length;
-    const progress = totalTasks > 0 ? (completeTasks / totalTasks) * 100 : 0; 
+    const progress = totalTasks > 0 ? (completeTasks / totalTasks) * 100 : 0;
 
     const progressBar = document.getElementById('progress');
-    progressBar.style.width = `${progress}%`; 
-    document.getElementById("number").innerText = `${completeTasks} / ${totalTasks}`; 
+    progressBar.style.width = `${progress}%`;
+    document.getElementById("number").innerText = `${completeTasks} / ${totalTasks}`;
 
     if (tasks.length && completeTasks === totalTasks) {
         console.log('Confetti blasting!');
@@ -128,7 +137,7 @@ closeModalButton.addEventListener('click', () => {
 });
 
 const saveTasks = () => {
-    localStorage.setItem('tasks', JSON.stringify(tasks)); 
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 };
 
 document.getElementById('newTask').addEventListener('click', function (e) {
@@ -192,11 +201,11 @@ const blastConfetti = () => {
 };
 
 document.getElementById('resetTasks').addEventListener('click', function () {
-    tasks = []; 
-    saveTasks(); 
-    updateTasksList(); 
-    updateStats(); 
-    document.getElementById('taskInput').value = ""; 
+    tasks = [];
+    saveTasks();
+    updateTasksList();
+    updateStats();
+    document.getElementById('taskInput').value = "";
 });
 
 const toggleSwitch = document.querySelector('.theme-switch__checkbox');
