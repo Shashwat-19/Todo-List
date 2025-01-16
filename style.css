@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 /* Light Mode (current theme) */
@@ -760,10 +761,10 @@ button {
 
 /* General style for the dropdown */
 .status-dropdown {
-    font-family: Arial, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     font-size: 14px;
     padding: 6px 8px;
-    background-color: #f0f0f0; /* Light gray background */
+    background-color: #828dff; /* Light gray background */
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 110px; /* Medium width */
@@ -791,7 +792,7 @@ button {
 /* Style for the Not Started option */
 .status-dropdown option[value="not-started"] {
     background-color: #ffebee; 
-    color: #d32f2f; 
+    color: #d32f2f; /* Red */
 }
 
 /* Style for the In Progress option */
