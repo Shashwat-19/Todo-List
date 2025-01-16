@@ -130,6 +130,12 @@ button {
     transition: all 0.3s ease;
 }
 
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 #task-list {
     display: flex;
     flex-direction: column;
@@ -141,11 +147,16 @@ button {
     max-height: calc(100vh - 120px);  /* Adjust max height based on footer height */
 }
 
+.task p {
+    margin: 0;
+    flex: 1; /* Ensures text takes up space before shrinking */
+}
 
 .taskItem {
     display: flex;
-    align-items: center; /* Vertically align items */
-    justify-content: space-between; /* Spread items evenly */
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;/* Spread items evenly */
     padding: 8px 10px;
     border-radius: 4px;
     margin-bottom: 8px;
@@ -153,14 +164,23 @@ button {
     width: 100%;
     border-radius: 30px;
     padding: 10px;
+    gap: 10px;
 }
 
+.taskItem img {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
 
 .task-status {
     margin-top: 5px;
     font-size: 14px;
     font-weight: bold;
-    color: #7ba4cf; /* Adjust color as needed */
+    color: #7ba4cf; 
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
 }
 
 .task-status .status-label {
@@ -178,10 +198,12 @@ button {
 
 .task {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 10px;
+    flex: 1; /* Ensures it takes available space */
+    word-break: break-word; /* Allows wrapping for long text */
 }
-
 .taskInput {
     width: 20px;
     height: 20px;
@@ -770,6 +792,7 @@ button {
     width: 110px; /* Medium width */
     cursor: pointer;
     transition: all 0.3s ease;
+    padding: 5px;
 }
 
 /* Dark mode styling */
