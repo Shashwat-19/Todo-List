@@ -71,6 +71,7 @@ const toggleTaskComplete = (index) => {
     tasks[index].completed = !tasks[index].completed;
     if (tasks[index].completed) {
         tasks[index].status = 'completed';
+        blastConfetti(); // Trigger confetti when a task is completed
     } else {
         tasks[index].status = 'not-started';
     }
@@ -88,6 +89,11 @@ const updateTaskStatus = (index, status) => {
     saveTasks();
     updateTasksList();
     updateStats();
+
+    // Trigger confetti if the task is marked as completed
+    if (tasks[index].completed) {
+        blastConfetti(); // Trigger confetti when a task is completed
+    }
 };
 
 const deleteTask = (index) => {
