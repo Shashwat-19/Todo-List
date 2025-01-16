@@ -149,6 +149,20 @@ button {
     justify-content: space-between;
 }
 
+.task-status {
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #7ba4cf; /* Adjust color as needed */
+}
+
+.task-status .status-label {
+    background-color: #D8EAFD; /* Light blue background */
+    padding: 3px 8px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
 
 .task {
     display: flex;
@@ -174,7 +188,7 @@ button {
 }
 
 .footer {
-    padding: 20px 0;
+    padding: 20px , 10;
     background-color: var(--secondaryBackground);
     text-align: center;
     color: var(--text);
@@ -192,21 +206,42 @@ button {
     font-weight: bold;
 }
 
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-bottom {
+    margin-top: 15px;
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
 .social-links {
     display: flex;
-    justify-content: center;
     gap: 15px;
+}
+
+.footer-content p {
+    margin: 0;
+    font-size: 1.1em;
+}
+
+.footer-content strong {
+    color: #f39c12;
 }
 
 .social-links a img {
     width: 30px;
     height: 30px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .social-links a img:hover {
-    transform: scale(1.2);
-    opacity: 0.8;
+    transform: scale(1.1);
+    filter: brightness(1.2);
 }
 
 #newTask {
@@ -711,4 +746,5 @@ button {
         margin-top: 20px;
     }
 }
+
 

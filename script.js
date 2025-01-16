@@ -1,11 +1,13 @@
 let tasks = JSON.parse(localStorage.getItem('tasks')) || []; 
 
+const options = ['Not Started', 'In Progress', 'Completed'];
+
 const addTask = () => {
     const taskInput = document.getElementById('taskInput');
     const text = taskInput.value.trim();
 
     if (text) {
-        tasks.push({ text: text, completed: false });
+        tasks.push({ text: text, completed: false, status: 'not-started' });
         taskInput.value = "";
         saveTasks(); 
         updateTasksList();
@@ -25,7 +27,17 @@ const updateTasksList = () => {
                 <input type="checkbox" class="checkbox" ${task.completed ? 'checked' : ''} />
                 <p><strong>${index + 1}.</strong> ${task.text}</p>
             </div>
+            <div class="task-status">
+                <p>Status: <span class="status-text">${getStatusText(task.status)}</span></p>
+            </div>
             <div class="icons">
+                <select class="status-dropdown" data-index="${index}">
+                    ${options.map(option => `
+                        <option value="${option.toLowerCase().replace(' ', '-')}" 
+                            ${task.status === option.toLowerCase().replace(' ', '-') ? 'selected' : ''}>
+                            ${option}
+                        </option>`).join('')}
+                </select>
                 <img src="./assets/edit.png" onClick="editTask(${index})" />
                 <img src="./assets/bin.png" onClick="deleteTask(${index})" />
             </div>
@@ -35,13 +47,36 @@ const updateTasksList = () => {
         const checkbox = listItem.querySelector('.checkbox');
         checkbox.addEventListener('change', () => toggleTaskComplete(index));
 
+        const dropdown = listItem.querySelector('.status-dropdown');
+        dropdown.addEventListener('change', (e) => updateTaskStatus(index, e.target.value));
+
         taskList.append(listItem);
     });
+};
+
+const getStatusText = (status) => {
+    switch (status) {
+        case 'not-started':
+            return 'Not Started';
+        case 'in-progress':
+            return 'In Progress';
+        case 'completed':
+            return 'Completed';
+        default:
+            return '';
+    }
 };
 
 const toggleTaskComplete = (index) => {
     tasks[index].completed = !tasks[index].completed;
     saveTasks(); 
+    updateTasksList();
+    updateStats();
+};
+
+const updateTaskStatus = (index, status) => {
+    tasks[index].status = status;
+    saveTasks();
     updateTasksList();
     updateStats();
 };
@@ -54,17 +89,16 @@ const deleteTask = (index) => {
 };
 
 const editTask = (index) => {
-   const taskInput = document.getElementById('taskInput');
-   taskInput.value = tasks[index].text;
+    const taskInput = document.getElementById('taskInput');
+    taskInput.value = tasks[index].text;
 
-   tasks.splice(index,1);
-   updateTasksList();
-   updateStats();
+    tasks.splice(index, 1);
+    updateTasksList();
+    updateStats();
 };
 
 const taskList = document.getElementById('task-list');
 taskList.scrollTop = taskList.scrollHeight;
-
 
 const motivationalModal = document.getElementById('motivationalModal');
 const closeModalButton = document.getElementById('closeModal');
@@ -167,22 +201,22 @@ document.getElementById('resetTasks').addEventListener('click', function () {
 
 const toggleSwitch = document.querySelector('.theme-switch__checkbox');
 
-  toggleSwitch.addEventListener('change', () => {
+toggleSwitch.addEventListener('change', () => {
     document.body.classList.toggle('dark-mode', toggleSwitch.checked);
-  });
+});
 
-  // Optional: Save user preference in localStorage
-  if (localStorage.getItem('darkMode') === 'enabled') {
+// Optional: Save user preference in localStorage
+if (localStorage.getItem('darkMode') === 'enabled') {
     document.body.classList.add('dark-mode');
     toggleSwitch.checked = true;
-  }
+}
 
-  toggleSwitch.addEventListener('change', () => {
+toggleSwitch.addEventListener('change', () => {
     if (toggleSwitch.checked) {
-      document.body.classList.add('dark-mode');
-      localStorage.setItem('darkMode', 'enabled');
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('darkMode', 'enabled');
     } else {
-      document.body.classList.remove('dark-mode');
-      localStorage.setItem('darkMode', 'disabled');
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('darkMode', 'disabled');
     }
-  });
+});
