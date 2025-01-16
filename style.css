@@ -139,8 +139,8 @@ button {
 #task-list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    margin-top: 30px;
+    gap: 10px;
+    margin-top: 10px;
     width: 100%;
     list-style: none;
     overflow-y: auto;  /* Add vertical scrolling */
@@ -148,13 +148,14 @@ button {
 }
 
 .task p {
-    margin: 0;
+    font-size: 18px;
+    margin:  0;
     flex: 1; /* Ensures text takes up space before shrinking */
 }
 
 .taskItem {
     display: flex;
-    flex-wrap: wrap;
+    
     align-items: center;
     justify-content: space-between;/* Spread items evenly */
     padding: 8px 10px;
@@ -178,7 +179,6 @@ button {
     font-size: 14px;
     font-weight: bold;
     color: #7ba4cf; 
-    flex: 1;
     min-width: 120px;
     text-align: center;
 }
@@ -191,18 +191,14 @@ button {
 }
 
 .taskItem .checkbox {
-    margin-right: 10px; /* Add space between checkbox and text */
     transform: scale(1.2); /* Slightly enlarge the checkbox */
     cursor: pointer;
 }
 
 .task {
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     gap: 10px;
-    flex: 1; /* Ensures it takes available space */
-    word-break: break-word; /* Allows wrapping for long text */
 }
 .taskInput {
     width: 20px;
