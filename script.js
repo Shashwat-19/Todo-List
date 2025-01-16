@@ -27,9 +27,6 @@ const updateTasksList = () => {
                 <input type="checkbox" class="checkbox" ${task.completed ? 'checked' : ''} />
                 <p><strong>${index + 1}.</strong> ${task.text}</p>
             </div>
-            <div class="task-status">
-                <p>Status: <span class="status-text">${getStatusText(task.status)}</span></p>
-            </div>
             <div class="icons">
                 <select class="status-dropdown" data-index="${index}">
                     ${options.map(option => `
@@ -48,7 +45,9 @@ const updateTasksList = () => {
         checkbox.addEventListener('change', () => toggleTaskComplete(index));
 
         const dropdown = listItem.querySelector('.status-dropdown');
-        dropdown.addEventListener('change', (e) => updateTaskStatus(index, e.target.value));
+        dropdown.addEventListener('change', (e) => {
+            updateTaskStatus(index, e.target.value);
+        });
 
         taskList.append(listItem);
     });
