@@ -228,6 +228,7 @@ button {
     bottom: 0;
     width: 100%;
     z-index: 100;
+    padding-top: 20px;
 }
 
 .footer p {
