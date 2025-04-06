@@ -96,11 +96,23 @@ This project is licensed under the GNU General Public License v3.0 (GPL-3.0). Se
 
 ---
 
-## 📩 Contact
+## 📩 Contact  
+### Shashwat
+**Software Developer | Cloud & DevOps Enthusiast**
 
-**Shashwat**  
-BCA (Hons), Christ University, Bangalore  
-[GitHub](https://github.com/Shashwat-19) | [LinkedIn](https://www.linkedin.com/in/shashwatk1956/) | [Email me](shashwat1956@gmail.com)  
+**🔹 Java Backend Development**<br>
+**🔹 Cloud Architecture & Containerization**<br>
+**🔹 DevOps & Scalable Systems**
+
+### 🚀 Open Source | Tech Innovation
+
+Passionate about building scalable applications and contributing to transformative tech solutions.
+
+### 📌 Find me here:
+[<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" />](https://github.com/Shashwat-19)
+[<img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/shashwatk1956/)
+[<img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" />](mailto:shashwat1956@gmail.com)
+
 
 ---
 
