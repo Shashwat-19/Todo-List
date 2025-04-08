@@ -23,14 +23,20 @@
                 </div>
             </div>
 
-            
             <form action="">
                 <input type="text" id="taskInput" placeholder="Enter task">
                 <button id="newTask" type="submit">+</button>
                 <button id="resetTasks" type="button">Reset</button>
             </form>
+            
+            <!-- Filter buttons -->
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+                <button class="filter-btn" data-filter="in-progress">In Progress</button>
+                <button class="filter-btn" data-filter="not-started">Not Started</button>
+            </div>
     
-            <!-- Removed the blue container div -->
             <ul id="task-list"></ul>
         </div>
       

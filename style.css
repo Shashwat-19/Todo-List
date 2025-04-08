@@ -1520,3 +1520,86 @@ body.dark-mode .status-dropdown {
     }
   }
   
+  /* Add these styles to your existing CSS file */
+
+/* Filter Buttons Container */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* Filter Button Styling */
+.filter-btn {
+    padding: 8px 16px;
+    background-color: var(--secondaryBackground);
+    color: var(--text);
+    border: 1px solid var(--purple);
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    min-width: 100px;
+    text-align: center;
+}
+
+.filter-btn:hover {
+    background-color: var(--purple);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background-color: var(--purple);
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Status Count Badges */
+.filter-btn .count-badge {
+    display: inline-block;
+    background-color: var(--background);
+    color: var(--text);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    margin-left: 5px;
+}
+
+/* Responsive adjustments for filters */
+@media (max-width: 768px) {
+    .filter-container {
+        gap: 8px;
+    }
+    
+    .filter-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+        min-width: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .filter-btn {
+        width: calc(50% - 5px);
+        margin-bottom: 8px;
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+}
+
+/* Task visibility for filtering */
+.task-hidden {
+    display: none;
+}
