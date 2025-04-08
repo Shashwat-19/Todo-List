@@ -158,13 +158,11 @@ button {
     
     align-items: center;
     justify-content: space-between;/* Spread items evenly */
-    padding: 8px 10px;
-    border-radius: 4px;
-    margin-bottom: 8px;
+    padding: 12px 16px;
+    border-radius: 30px;
+    margin-bottom: 10px;
     background-color: var(--secondaryBackground);
     width: 100%;
-    border-radius: 30px;
-    padding: 10px;
     gap: 10px;
 }
 
@@ -215,6 +213,192 @@ button {
     height: 24px;
     margin: 0 10px;
     cursor: pointer;
+}
+
+.task-left p {
+    font-size: 18px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: var(--text);
+    opacity: 0.7;
+}
+
+.checkbox {
+    transform: scale(1.2);
+    cursor: pointer;
+    min-width: 18px;
+}
+
+/* Middle section with status indicator */
+.task-middle {
+    display: flex;
+    justify-content: center;
+    padding: 0 10px;
+    flex: 0 0 auto;
+}
+
+/* Right section with dropdown and icons */
+.task-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 0 0 auto;
+}
+
+.task-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.task-icons img {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.task-icons img:hover {
+    transform: scale(1.1);
+}
+
+/* Status indicator styles */
+.task-status-indicator {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    min-width: 90px;
+    text-align: center;
+    white-space: nowrap;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Status colors */
+.status-not-started {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+.status-in-progress {
+    background-color: #e3f2fd;
+    color: #1565c0;
+    border: 1px solid #90caf9;
+}
+
+.status-completed {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+}
+
+/* Dark mode status colors */
+.dark-mode .status-not-started {
+    background-color: #4a1414;
+    color: #ff8a8a;
+    border-color: #7d2424;
+}
+
+.dark-mode .status-in-progress {
+    background-color: #0d2b4a;
+    color: #8bb8ff;
+    border-color: #1a4b80;
+}
+
+.dark-mode .status-completed {
+    background-color: #133a16;
+    color: #7dd985;
+    border-color: #2c5d30;
+}
+
+/* Dropdown styles */
+.status-dropdown {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 14px;
+    padding: 6px 8px;
+    background-color: #828dff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 110px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dark-mode .status-dropdown {
+    background-color: #d3d3d3;
+    color: #333;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .taskItem {
+        flex-wrap: wrap;
+        padding: 10px;
+        gap: 8px;
+    }
+    
+    .task-left {
+        width: 100%;
+        order: 1;
+    }
+    
+    .task-middle {
+        order: 3;
+        width: 50%;
+        justify-content: flex-start;
+        padding: 0;
+    }
+    
+    .task-right {
+        order: 2; 
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .status-dropdown {
+        width: 100px;
+        font-size: 12px;
+        padding: 5px;
+    }
+    
+    .task-icons {
+        justify-content: flex-end;
+    }
+}
+
+/* Smallest screens */
+@media (max-width: 480px) {
+    .taskItem {
+        padding: 8px;
+    }
+    
+    .task-left p {
+        font-size: 14px;
+    }
+    
+    .status-dropdown {
+        width: 85px;
+        font-size: 11px;
+        padding: 4px;
+    }
+    
+    .task-status-indicator {
+        font-size: 10px;
+        padding: 3px 6px;
+        min-width: 70px;
+    }
+    
+    .task-icons img {
+        width: 20px;
+        height: 20px;
+    }
 }
 
 .footer {
@@ -851,4 +1035,190 @@ body.dark-mode .status-dropdown {
     .task-status, .status-dropdown {
         display: none;
     }
+}
+
+/* Add these new styles to your existing CSS */
+
+/* Task status indicator styles */
+.task-status-indicator {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 10px;
+    min-width: 90px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Status colors */
+.status-not-started {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+.status-in-progress {
+    background-color: #e3f2fd;
+    color: #1565c0;
+    border: 1px solid #90caf9;
+}
+
+.status-completed {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+}
+
+/* Dark mode status colors */
+.dark-mode .status-not-started {
+    background-color: #4a1414;
+    color: #ff8a8a;
+    border: 1px solid #7d2424;
+}
+
+.dark-mode .status-in-progress {
+    background-color: #0d2b4a;
+    color: #8bb8ff;
+    border: 1px solid #1a4b80;
+}
+
+.dark-mode .status-completed {
+    background-color: #133a16;
+    color: #7dd985;
+    border: 1px solid #2c5d30;
+}
+
+/* Update taskItem to include the status indicator */
+.taskItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    background-color: var(--secondaryBackground);
+    width: 100%;
+    gap: 10px;
+}
+
+/* Ensure task takes appropriate space */
+.task {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+/* Keep status dropdown visible on mobile */
+@media (max-width: 768px) {
+    .status-dropdown {
+        display: flex;
+        width: 100px;
+        padding: 6px;
+        font-size: 12px;
+    }
+    
+    .taskItem {
+        flex-wrap: wrap;
+    }
+    
+    .task {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+    
+    .icons {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .task-status-indicator {
+        width: auto;
+        padding: 3px 6px;
+        font-size: 10px;
+        margin-left: auto;
+    }
+}
+
+/* Smallest screens */
+@media (max-width: 480px) {
+    .status-dropdown {
+        width: 80px;
+        font-size: 11px;
+    }
+    
+    .taskItem {
+        padding: 10px;
+    }
+    
+    .task p {
+        font-size: 14px;
+    }
+    
+    .taskItem img {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+.blue-task-container {
+    background-color: #3D7EAE; /* Blue background color */
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    min-height: 100px; /* Ensures the container is visible even when empty */
+}
+
+/* Darker blue for dark mode */
+.dark-mode .blue-task-container {
+    background-color: #1D4A7A;
+}
+
+/* Keep the task list styling but remove any background that might conflict */
+#task-list {
+    background-color: transparent;
+    width: 100%;
+}
+
+/* Add this to your CSS file to enable proper text wrapping in task items */
+.task-left p {
+    font-size: 18px;
+    margin: 0;
+    white-space: normal; /* Allow text to wrap */
+    overflow-wrap: break-word; /* Break words that are too long */
+    word-wrap: break-word; /* Legacy support */
+    max-width: 100%; /* Ensure the text container doesn't exceed its parent */
+    line-height: 1.4; /* Improve readability of wrapped text */
+}
+
+/* These selectors might already exist in your CSS, so replace or modify accordingly */
+.task-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1; /* Take available space */
+    min-width: 0; /* Allow flexbox to shrink this item below content size if needed */
+}
+
+/* Remove the blue container styles since we're removing that element */
+.blue-task-container {
+    display: none; /* Simply hide it, or you can remove this rule entirely from your CSS */
+}
+
+/* Style the task list directly for better spacing */
+#task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+    list-style: none;
+    overflow-y: auto;
+    max-height: calc(100vh - 120px);
+    padding: 0; /* Ensure there's no default padding */
+    background-color: transparent; /* Keep background transparent */
 }

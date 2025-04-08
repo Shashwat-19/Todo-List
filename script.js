@@ -21,13 +21,24 @@ const updateTasksList = () => {
 
     tasks.forEach((task, index) => {
         const listItem = document.createElement('li');
+        
+        // Determine status class for styling
+        const statusClass = task.status || 'not-started';
+        
         listItem.innerHTML = `
         <div class="taskItem">
-            <div class="task ${task.completed ? 'completed' : ''}">
+            <div class="task-left">
                 <input type="checkbox" class="checkbox" ${task.completed ? 'checked' : ''} />
-                <p><strong>${index + 1}.</strong> ${task.text}</p>
+                <p class="${task.completed ? 'completed' : ''}"><strong>${index + 1}.</strong> ${task.text}</p>
             </div>
-            <div class="icons">
+            
+            <div class="task-middle">
+                <div class="task-status-indicator status-${statusClass}">
+                    ${getStatusText(task.status)}
+                </div>
+            </div>
+            
+            <div class="task-right">
                 <select class="status-dropdown" data-index="${index}">
                     ${options.map(option => `
                         <option value="${option.toLowerCase().replace(' ', '-')}" 
@@ -35,8 +46,10 @@ const updateTasksList = () => {
                             ${option}
                         </option>`).join('')}
                 </select>
-                <img src="./assets/edit.png" onClick="editTask(${index})" />
-                <img src="./assets/bin.png" onClick="deleteTask(${index})" />
+                <div class="task-icons">
+                    <img src="./assets/edit.png" onClick="editTask(${index})" />
+                    <img src="./assets/bin.png" onClick="deleteTask(${index})" />
+                </div>
             </div>
         </div>
         `;
@@ -62,7 +75,7 @@ const getStatusText = (status) => {
         case 'completed':
             return 'Completed';
         default:
-            return '';
+            return 'Not Started';
     }
 };
 
@@ -234,3 +247,4 @@ toggleSwitch.addEventListener('change', () => {
         localStorage.setItem('darkMode', 'disabled');
     }
 });
+
