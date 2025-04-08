@@ -226,25 +226,5 @@ document.getElementById('resetTasks').addEventListener('click', function () {
     document.getElementById('taskInput').value = "";
 });
 
-const toggleSwitch = document.querySelector('.theme-switch__checkbox');
 
-toggleSwitch.addEventListener('change', () => {
-    document.body.classList.toggle('dark-mode', toggleSwitch.checked);
-});
-
-// Optional: Save user preference in localStorage
-if (localStorage.getItem('darkMode') === 'enabled') {
-    document.body.classList.add('dark-mode');
-    toggleSwitch.checked = true;
-}
-
-toggleSwitch.addEventListener('change', () => {
-    if (toggleSwitch.checked) {
-        document.body.classList.add('dark-mode');
-        localStorage.setItem('darkMode', 'enabled');
-    } else {
-        document.body.classList.remove('dark-mode');
-        localStorage.setItem('darkMode', 'disabled');
-    }
-});
 

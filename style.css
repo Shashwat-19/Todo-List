@@ -1198,11 +1198,12 @@ body.dark-mode .status-dropdown {
 /* These selectors might already exist in your CSS, so replace or modify accordingly */
 .task-left {
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Changed from center to allow proper text wrapping */
     gap: 10px;
-    flex: 1; /* Take available space */
-    min-width: 0; /* Allow flexbox to shrink this item below content size if needed */
-}
+    flex: 1;
+    min-width: 0; /* Allow flexbox to shrink this item below content size */
+    overflow-wrap: break-word; /* Ensure long words wrap */
+  }
 
 /* Remove the blue container styles since we're removing that element */
 .blue-task-container {
@@ -1222,3 +1223,300 @@ body.dark-mode .status-dropdown {
     padding: 0; /* Ensure there's no default padding */
     background-color: transparent; /* Keep background transparent */
 }
+
+/* Improve text wrapping in task items */
+.task-left {
+    display: flex;
+    align-items: flex-start; /* Changed from center to allow proper text wrapping */
+    gap: 10px;
+    flex: 1;
+    min-width: 0; /* Allow flexbox to shrink this item below content size */
+    overflow-wrap: break-word; /* Ensure long words wrap */
+  }
+  
+  .task-left p {
+    font-size: 18px;
+    margin: 0;
+    white-space: normal; /* Allow text to wrap */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    max-width: 100%;
+    line-height: 1.4;
+  }
+  
+  /* Make task item structure more flexible for wrapping */
+  .taskItem {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    background-color: var(--secondaryBackground);
+    width: 100%;
+    gap: 10px;
+  }
+  
+  /* Responsive design for full-width on tablets and mobile */
+  @media (max-width: 1024px) {
+    .container {
+      max-width: 95%; /* Increase container width on tablets */
+      margin: 80px auto 0;
+    }
+    
+    /* Ensure task list has adequate height on tablets */
+    #task-list {
+      max-height: calc(100vh - 220px);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      max-width: 100%; /* Full width on mobile */
+      margin: 40px auto 0;
+      padding: 0 15px; /* Add some padding on the sides */
+    }
+    
+    .task-left {
+      width: 100%; /* Full width for task text */
+    }
+    
+    .taskItem {
+      flex-direction: column; /* Stack elements for very narrow screens */
+      align-items: flex-start;
+      padding: 15px;
+    }
+    
+    .task-middle {
+      order: 2;
+      padding: 5px 0;
+    }
+    
+    .task-right {
+      width: 100%;
+      justify-content: space-between;
+      order: 3;
+    }
+    
+    /* Make checkbox and text stay on same line */
+    .task-left {
+      display: flex;
+      align-items: flex-start;
+    }
+    
+    .checkbox {
+      margin-top: 3px; /* Align checkbox with first line of text */
+    }
+  }
+  
+  /* For very small screens, optimize further */
+  @media (max-width: 480px) {
+    .stats-container {
+      padding: 15px;
+    }
+    
+    input {
+      padding: 10px;
+    }
+    
+    .task-status-indicator {
+      margin: 5px 0;
+    }
+    
+    #task-list {
+      max-height: calc(100vh - 240px);
+    }
+  }
+
+/* Update taskItem structure for better responsiveness */
+.taskItem {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    background-color: var(--secondaryBackground);
+    width: 100%;
+    gap: 10px;
+    flex-wrap: nowrap; /* Prevent wrapping by default */
+  }
+  
+  /* Improve left section with checkbox and text */
+  .task-left {
+    display: flex;
+    align-items: flex-start; /* Align to top for multiline text */
+    gap: 10px;
+    flex: 1;
+    min-width: 0; /* Allow content to shrink below minimum size */
+    overflow-wrap: break-word; /* Break long words */
+  }
+  
+  .task-left p {
+    font-size: 18px;
+    margin: 0;
+    white-space: normal; /* Allow text wrapping */
+    overflow-wrap: break-word;
+    word-break: break-word; /* Handle very long words */
+    max-width: 100%;
+    line-height: 1.4;
+  }
+  
+  .checkbox {
+    margin-top: 3px; /* Align with first line of text */
+    flex-shrink: 0; /* Prevent checkbox from shrinking */
+  }
+  
+  /* Middle section with status indicator */
+  .task-middle {
+    display: flex;
+    justify-content: center;
+    padding: 0 5px;
+    flex-shrink: 0; /* Prevent shrinking */
+  }
+  
+  /* Right section with dropdown and action buttons */
+  .task-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0; /* Prevent shrinking */
+  }
+  
+  .task-icons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0; /* Prevent icons from shrinking */
+  }
+  
+  /* Make dropdown and status more consistent */
+  .status-dropdown {
+    width: 110px;
+    flex-shrink: 0; /* Prevent dropdown from shrinking */
+  }
+  
+  .task-status-indicator {
+    min-width: 90px;
+    flex-shrink: 0; /* Prevent status from shrinking */
+  }
+  
+  /* Tablet Responsive Design */
+  @media (max-width: 768px) {
+    .taskItem {
+      flex-wrap: wrap; /* Allow wrapping on smaller screens */
+      gap: 8px;
+      padding: 10px 12px;
+    }
+    
+    .task-left {
+      width: 100%; /* Full width for text on smaller screens */
+      margin-bottom: 6px;
+    }
+    
+    .task-middle {
+      order: 2;
+      padding: 0;
+      margin-right: auto; /* Push to the left */
+    }
+    
+    .task-right {
+      order: 3;
+      width: auto;
+      margin-left: auto; /* Push to the right */
+    }
+    
+    .status-dropdown {
+      width: 100px;
+      font-size: 12px;
+      padding: 4px 6px;
+    }
+    
+    .task-status-indicator {
+      font-size: 11px;
+      min-width: 80px;
+      padding: 3px 6px;
+    }
+  }
+  
+  /* Mobile-specific adjustments */
+  @media (max-width: 480px) {
+    .taskItem {
+      padding: 8px 10px;
+    }
+    
+    .task-left p {
+      font-size: 16px;
+    }
+    
+    /* Stack the elements vertically on very small screens */
+    .task-right {
+      width: 100%;
+      justify-content: space-between;
+      margin-top: 6px;
+    }
+    
+    .task-middle {
+      margin-right: 0;
+    }
+    
+    .task-icons img {
+      width: 20px;
+      height: 20px;
+    }
+    
+    .status-dropdown {
+      width: 90px;
+      font-size: 11px;
+    }
+    
+    .task-status-indicator {
+      font-size: 10px;
+      min-width: 70px;
+      padding: 2px 5px;
+    }
+    
+    /* Ensure progress stats remain visible and functional */
+    .stats-container {
+      padding: 15px;
+    }
+    
+    #number {
+      width: 80px;
+      height: 80px;
+      font-size: 22px;
+    }
+  }
+  
+  /* Ensure task list has proper height and scrolling */
+  #task-list {
+    max-height: calc(100vh - 300px);
+    overflow-y: auto;
+    margin-bottom: 70px; /* Add space for footer */
+    padding-bottom: 20px;
+  }
+
+  @media screen and (max-width: 768px) {
+    #task-list {
+        max-height: calc(100vh - 200px);
+    }
+    .taskItem {
+        padding: 10px;
+    }
+    .task-left p {
+        font-size: 16px;
+    }
+    .task-right {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 6px;
+    }
+    .task-middle {
+        margin-right: 0;
+    }
+    .task-icons img {
+        width: 20px;
+        height: 20px;
+    }
+  }
+  
