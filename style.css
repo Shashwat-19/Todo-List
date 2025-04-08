@@ -1573,29 +1573,24 @@ body.dark-mode .status-dropdown {
 }
 
 /* Responsive adjustments for filters */
-@media (max-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 1024px) {
     .filter-container {
-        gap: 8px;
-    }
-    
-    .filter-btn {
-        padding: 6px 12px;
-        font-size: 12px;
-        min-width: 80px;
-    }
-}
-
-@media (max-width: 480px) {
-    .filter-container {
-        flex-direction: row;
+        display: flex;
+        justify-content: space-between;
         flex-wrap: wrap;
+        width: 100w;
+        padding: 0 20px;
+        box-sizing: border-box;
+        margin-left: calc(-50vw + 50%);
+        margin-left: 19px;
     }
-    
+
     .filter-btn {
-        width: calc(50% - 5px);
-        margin-bottom: 8px;
-        padding: 5px 10px;
-        font-size: 12px;
+        flex: 1 1 22%;
+        margin: 8px 4px;
+        min-width: auto;
+        font-size: 14px;
+        text-align: center;
     }
 }
 
