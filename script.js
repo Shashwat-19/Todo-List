@@ -142,6 +142,7 @@ const editTask = (index) => {
 const taskList = document.getElementById('task-list');
 taskList.scrollTop = taskList.scrollHeight;
 
+
 const motivationalModal = document.getElementById('motivationalModal');
 const closeModalButton = document.getElementById('closeModal');
 
