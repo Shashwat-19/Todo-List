@@ -1,310 +1,243 @@
-let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-let currentFilter = 'all';
-
-const options = ['Not Started', 'In Progress', 'Completed'];
-
-const addTask = () => {
-    const taskInput = document.getElementById('taskInput');
-    const text = taskInput.value.trim();
-
-    if (text) {
-        tasks.push({ text: text, completed: false, status: 'not-started' });
-        taskInput.value = "";
-        saveTasks();
-        updateTasksList();
-        updateStats();
-        updateFilterCounts();
-    }
-};
-
-const updateTasksList = () => {
+document.addEventListener('DOMContentLoaded', () => {
+    const taskInput = document.getElementById('todo-input');
     const taskList = document.getElementById('task-list');
-    taskList.innerHTML = '';
+    const addButton = document.getElementById('add-button');
+    const numberDisplay = document.getElementById('number');
+    const progressBar = document.getElementById('progress');
+    const filterButtons = document.querySelectorAll('.filter-btn');
 
-    tasks.forEach((task, index) => {
-        const listItem = document.createElement('li');
-        
-        // Determine status class for styling
-        const statusClass = task.status || 'not-started';
-        
-        // Set visibility based on current filter
-        const isVisible = 
-            currentFilter === 'all' || 
-            currentFilter === task.status;
-        
-        if (!isVisible) {
-            listItem.classList.add('task-hidden');
+    let tasks = []; // Array to store tasks
+    let currentFilter = 'all';
+
+    // Load tasks from localStorage
+    function loadTasksFromLocalStorage() {
+        const storedTasks = localStorage.getItem('todoTasks');
+        if (storedTasks) {
+            tasks = JSON.parse(storedTasks);
         }
-        
-        listItem.innerHTML = `
-        <div class="taskItem">
-            <div class="task-left">
-                <input type="checkbox" class="checkbox" ${task.completed ? 'checked' : ''} />
-                <p class="${task.completed ? 'completed' : ''}"><strong>${index + 1}.</strong> ${task.text}</p>
-            </div>
-            
-            <div class="task-middle">
-                <div class="task-status-indicator status-${statusClass}">
-                    ${getStatusText(task.status)}
-                </div>
-            </div>
-            
-            <div class="task-right">
-                <select class="status-dropdown" data-index="${index}">
-                    ${options.map(option => `
-                        <option value="${option.toLowerCase().replace(' ', '-')}" 
-                            ${task.status === option.toLowerCase().replace(' ', '-') ? 'selected' : ''}>
-                            ${option}
-                        </option>`).join('')}
-                </select>
-                <div class="task-icons">
-                    <img src="./assets/edit.png" onClick="editTask(${index})" />
-                    <img src="./assets/bin.png" onClick="deleteTask(${index})" />
-                </div>
-            </div>
-        </div>
-        `;
+    }
 
-        const checkbox = listItem.querySelector('.checkbox');
-        checkbox.addEventListener('change', () => toggleTaskComplete(index));
+    // Save tasks to localStorage
+    function saveTasksToLocalStorage() {
+        localStorage.setItem('todoTasks', JSON.stringify(tasks));
+    }
 
-        const dropdown = listItem.querySelector('.status-dropdown');
-        dropdown.addEventListener('change', (e) => {
-            updateTaskStatus(index, e.target.value);
+    // Load tasks when the page loads
+    loadTasksFromLocalStorage();
+    renderTasks(); // Render the tasks that were loaded
+
+    // Handle adding a new task
+    addButton.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent form submission
+        const taskText = taskInput.value.trim();
+
+        if (taskText) {
+            const newTask = {
+                text: taskText,
+                status: 'not-started', // Default status
+            };
+
+            tasks.push(newTask);
+            taskInput.value = ''; // Clear input field
+            saveTasksToLocalStorage(); // Save to localStorage
+            renderTasks();
+        }
+    });
+
+    function createStatusDropdown(task, index) {
+        const select = document.createElement('select');
+        select.className = 'status-dropdown';
+        ['not-started', 'in-progress', 'completed'].forEach(status => {
+            const option = document.createElement('option');
+            option.value = status;
+            option.textContent = status.replace('-', ' ');
+            if (task.status === status) option.selected = true;
+            select.appendChild(option);
         });
 
-        taskList.append(listItem);
-    });
-};
+        select.addEventListener('change', () => {
+            task.status = select.value;
+            saveTasksToLocalStorage();
+            renderTasks();
+        });
 
-const getStatusText = (status) => {
-    switch (status) {
-        case 'not-started':
-            return 'Not Started';
-        case 'in-progress':
-            return 'In Progress';
-        case 'completed':
-            return 'Completed';
-        default:
-            return 'Not Started';
+        return select;
     }
-};
 
-const toggleTaskComplete = (index) => {
-    tasks[index].completed = !tasks[index].completed;
-    if (tasks[index].completed) {
-        tasks[index].status = 'completed';
-        blastConfetti(); // Trigger confetti when a task is completed
-    } else {
-        tasks[index].status = 'not-started';
+    function renderTasks() {
+        taskList.innerHTML = ''; // Clear current task list
+        let completedCount = 0;
+
+        const filteredTasks = tasks.filter(task => {
+            if (currentFilter === 'all') return true;
+            return task.status === currentFilter;
+        });
+
+        filteredTasks.forEach((task, index) => {
+            const li = document.createElement('li');
+            li.classList.add('todo');
+
+            const taskLabel = document.createElement('span');
+            taskLabel.classList.add('todo-text');
+            taskLabel.textContent = task.text;
+
+            const statusDropdown = createStatusDropdown(task, index);
+
+            const deleteButton = document.createElement('button');
+            deleteButton.classList.add('delete-button');
+            deleteButton.innerHTML = `<svg fill="var(--secondary-color)" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/></svg>`;
+            deleteButton.addEventListener('click', () => {
+                tasks.splice(index, 1);
+                saveTasksToLocalStorage();
+                renderTasks();
+            });
+
+            li.appendChild(taskLabel);
+            li.appendChild(statusDropdown);
+            li.appendChild(deleteButton);
+            taskList.appendChild(li);
+
+            if (task.status === 'completed') {
+                completedCount++;
+            }
+        });
+
+        updateStats(tasks.length, completedCount);
+        updateFilterCounts();
     }
-    saveTasks();
-    updateTasksList();
-    updateStats();
-    updateFilterCounts();
-};
 
-const updateTaskStatus = (index, status) => {
-    tasks[index].status = status;
-
-    // Automatically check or uncheck the task based on the status
-    tasks[index].completed = status === 'completed';
-
-    saveTasks();
-    updateTasksList();
-    updateStats();
-    updateFilterCounts();
-
-    // Trigger confetti if the task is marked as completed
-    if (tasks[index].completed) {
-        blastConfetti(); // Trigger confetti when a task is completed
-    }
-};
-
-const deleteTask = (index) => {
-    tasks.splice(index, 1);
-    saveTasks();
-    updateTasksList();
-    updateStats();
-    updateFilterCounts();
-};
-
-const editTask = (index) => {
-    const taskInput = document.getElementById('taskInput');
-    taskInput.value = tasks[index].text;
-
-    tasks.splice(index, 1);
-    updateTasksList();
-    updateStats();
-    updateFilterCounts();
-};
-
-const taskList = document.getElementById('task-list');
-taskList.scrollTop = taskList.scrollHeight;
-
-
-const motivationalModal = document.getElementById('motivationalModal');
-const closeModalButton = document.getElementById('closeModal');
-
-const updateStats = () => {
-    const completeTasks = tasks.filter(task => task.completed).length;
-    const totalTasks = tasks.length;
-    const progress = totalTasks > 0 ? (completeTasks / totalTasks) * 100 : 0;
-
-    const progressBar = document.getElementById('progress');
-    progressBar.style.width = `${progress}%`;
-    document.getElementById("number").innerText = `${completeTasks} / ${totalTasks}`;
-
-    if (tasks.length && completeTasks === totalTasks) {
-        console.log('Confetti blasting!');
-        blastConfetti();
-        showMotivationalModal(); // Show popup
-    }
-};
-
-// Function to update the counts for each filter category
-const updateFilterCounts = () => {
-    const allCount = tasks.length;
-    const completedCount = tasks.filter(task => task.status === 'completed').length;
-    const inProgressCount = tasks.filter(task => task.status === 'in-progress').length;
-    const notStartedCount = tasks.filter(task => task.status === 'not-started').length;
+    function renderTasks() {
+        taskList.innerHTML = ''; // Clear current task list
+        let completedCount = 0;
     
-    // Update buttons with count badges (optional enhancement)
-    // This would require adding span elements to the buttons
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        const filter = btn.getAttribute('data-filter');
-        let count = 0;
-        
-        switch (filter) {
-            case 'all':
-                count = allCount;
-                break;
-            case 'completed':
-                count = completedCount;
-                break;
-            case 'in-progress':
-                count = inProgressCount;
-                break;
-            case 'not-started':
-                count = notStartedCount;
-                break;
-        }
-        
-        // Check if a count badge already exists
-        let badge = btn.querySelector('.count-badge');
-        if (!badge) {
-            badge = document.createElement('span');
-            badge.className = 'count-badge';
-            btn.appendChild(badge);
-        }
-        
-        badge.textContent = count;
-    });
-};
-
-// Filter tasks based on their status
-const filterTasks = (filter) => {
-    currentFilter = filter;
+        const filteredTasks = tasks.filter(task => {
+            if (currentFilter === 'all') return true;
+            return task.status === currentFilter;
+        });
     
-    // Update active filter button
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        if (btn.getAttribute('data-filter') === filter) {
-            btn.classList.add('active');
+        filteredTasks.forEach((task, index) => {
+            const li = document.createElement('li');
+            li.classList.add('todo');
+    
+            // Create checkbox
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.className = 'todo-checkbox';
+            checkbox.checked = task.status === 'completed'; // Check if the task is completed
+            checkbox.addEventListener('change', () => {
+                task.status = checkbox.checked ? 'completed' : 'not-started'; // Update task status
+                saveTasksToLocalStorage();
+                renderTasks();
+            });
+    
+            const taskLabel = document.createElement('span');
+            taskLabel.classList.add('todo-text');
+            taskLabel.textContent = task.text;
+    
+            const statusDropdown = createStatusDropdown(task, index);
+    
+            const deleteButton = document.createElement('button');
+            deleteButton.classList.add('delete-button');
+            deleteButton.innerHTML = `<svg fill="var(--secondary-color)" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/></svg>`;
+            deleteButton.addEventListener('click', () => {
+                tasks.splice(index, 1);
+                saveTasksToLocalStorage();
+                renderTasks();
+            });
+    
+            // Append elements to the list item
+            li.appendChild(checkbox);  // Add checkbox to the task
+            li.appendChild(taskLabel);
+            li.appendChild(statusDropdown);
+            li.appendChild(deleteButton);
+            taskList.appendChild(li);
+    
+            if (task.status === 'completed') {
+                completedCount++;
+            }
+        });
+    
+        updateStats(tasks.length, completedCount);
+        updateFilterCounts();
+    }
+    
+
+    // Update the task stats and progress bar
+    function updateStats(total, completed) {
+        numberDisplay.textContent = `${completed} / ${total}`;
+        const progress = total === 0 ? 0 : (completed / total) * 100;
+        progressBar.style.width = `${progress}%`;
+
+        if (completed === total && total > 0) {
+            launchConfetti();
+            showMotivationalModal();
+        }
+    }
+
+    // Launch confetti when all tasks are completed
+    function launchConfetti() {
+        if (typeof confetti !== 'undefined') {
+            confetti({
+                particleCount: 200,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ff00ff', '#ff6600', '#66ff66', '#00ccff', '#ffcc00'],
+                scalar: 1.2,
+            });
         } else {
-            btn.classList.remove('active');
+            console.error("Confetti library not loaded correctly.");
         }
-    });
-    
-    // Update task list based on filter
-    updateTasksList();
-};
-
-const showMotivationalModal = () => {
-    motivationalModal.style.display = 'flex';
-};
-
-closeModalButton.addEventListener('click', () => {
-    motivationalModal.style.display = 'none';
-});
-
-const saveTasks = () => {
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-};
-
-document.getElementById('newTask').addEventListener('click', function (e) {
-    e.preventDefault();
-    addTask();
-});
-
-// Add event listeners for filter buttons
-document.querySelectorAll('.filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const filter = btn.getAttribute('data-filter');
-        filterTasks(filter);
-    });
-});
-
-updateTasksList();
-updateStats(); // Ensure stats are updated on load
-updateFilterCounts(); // Initialize filter counts
-
-const setConfettiCanvasZIndex = () => {
-    const confettiCanvas = document.querySelector('canvas.confetti-container');
-    if (confettiCanvas) {
-        confettiCanvas.style.zIndex = '1100'; // Ensure it is above the modal
-        confettiCanvas.style.position = 'fixed'; // Ensure proper positioning
-    }
-};
-
-const blastConfetti = () => {
-    const count = 200,
-        defaults = {
-            origin: { y: 0.7 },
-        };
-
-    function fire(particleRatio, opts) {
-        confetti(
-            Object.assign({}, defaults, opts, {
-                particleCount: Math.floor(count * particleRatio),
-            })
-        );
     }
 
-    fire(0.25, {
-        spread: 26,
-        startVelocity: 55,
+    const motivationalModal = document.getElementById('motivationalModal');
+    const closeModalButton = document.getElementById('closeModal');
+    closeModalButton.addEventListener('click', () => {
+        motivationalModal.style.display = 'none';
     });
 
-    fire(0.2, {
-        spread: 60,
-    });
+    function showMotivationalModal() {
+        motivationalModal.style.display = 'flex';
+    }
 
-    fire(0.35, {
-        spread: 100,
-        decay: 0.91,
-        scalar: 0.8,
-    });
+    function updateFilterCounts() {
+        const allCount = tasks.length;
+        const completedCount = tasks.filter(task => task.status === 'completed').length;
+        const inProgressCount = tasks.filter(task => task.status === 'in-progress').length;
+        const notStartedCount = tasks.filter(task => task.status === 'not-started').length;
 
-    fire(0.1, {
-        spread: 120,
-        startVelocity: 25,
-        decay: 0.92,
-        scalar: 1.2,
-    });
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            const filter = btn.getAttribute('data-filter');
+            let count = 0;
 
-    fire(0.1, {
-        spread: 120,
-        startVelocity: 45,
-    });
+            switch (filter) {
+                case 'all':
+                    count = allCount;
+                    break;
+                case 'completed':
+                    count = completedCount;
+                    break;
+                case 'in-progress':
+                    count = inProgressCount;
+                    break;
+                case 'not-started':
+                    count = notStartedCount;
+                    break;
+            }
 
-    setConfettiCanvasZIndex();
-};
+            let badge = btn.querySelector('.count-badge');
+            if (!badge) {
+                badge = document.createElement('span');
+                badge.className = 'count-badge';
+                btn.appendChild(badge);
+            }
+            badge.textContent = count;
+        });
+    }
 
-document.getElementById('resetTasks').addEventListener('click', function () {
-    tasks = [];
-    saveTasks();
-    updateTasksList();
-    updateStats();
-    updateFilterCounts();
-    document.getElementById('taskInput').value = "";
+    filterButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            currentFilter = e.target.dataset.filter;
+            renderTasks();
+        });
+    })
 });
