@@ -1,56 +1,146 @@
-* {
+:root{
+    --background: #101114;
+    --primary-color: #1C1D20;
+    --secondary-color: #4A4D57;
+    --accent-color: #00FFC4;
+    --text-color: #F9F9F9;
+}
+*{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Times New Roman', Times, serif;
 }
-
-/* Light Mode (current theme) */
-:root {
-    --background: #000430;  /* Keep your current background color */
-    --secondaryBackground: #171c48;  /* Keep your current secondary background color */
-    --text: #fff;  /* White text for light mode */
-    --purple: #828dff;  /* Purple for borders and accents */
-    --teal: #24feee;  /* Teal accent */
-    --border: #b0b0b0;  /* Light grey for borders in light mode */
+html{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16pt;
+  color: var(--text-color);
 }
-
-/* Dark Mode */
-.dark-mode {
-    --background: #1a1a1a;  /* Dark background shade */
-    --secondaryBackground: #333333;  /* Darker grey for secondary backgrounds */
-    --text: #fff;  /* White text */
-    --purple: #b3b3b3;  /* Silver borders */
-    --teal: #24feee;  /* Teal accent remains the same */
-    --border: #808080;  /* Silver border in dark mode */
-}
-
-body {
-    background-color: var(--background);
-    color: var(--text);
-    display: flex;
-    flex-direction: column;
+body{
     min-height: 100vh;
-    margin: 0;
-    padding: 0;
-}
-
-main {
-    flex: 1;
-    overflow-y: auto;
-    padding-bottom: 100px; /* Allow space for footer */
-}
-
-
-.container {
-    flex: 1;
+    padding: 10px;
+    background-color: var(--background);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    max-width: 500px;
-    margin: 120px auto 0;
-    padding-bottom: 20px;
+}
+h1{
+    margin-top: 100px;
+    margin-bottom: 20px;
+    font-size: 3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--accent-color);
+}
+.wrapper{
+    padding-top: 10px;
+    width: 700px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+#todo-input{
+    box-sizing: border-box;
+    padding: 12px 20px;
+    width: 100%;
+    background: none;
+    border: 2px solid var(--secondary-color);
+    border-radius: 1000px;
+    font: inherit;
+    color: var(--text-color);
+    caret-color: var(--accent-color);
+}
+#todo-input:focus{
+    outline: none;
+}
+form{
+    position: relative;
+}
+#add-button{
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    background-color: var(--accent-color);
+    height: 100%;
+    padding: 0 30px;
+    border: none;
+    border-radius: 1000px;
+    font: inherit;
+    font-weight: 600;
+    color: var(--background);
+    cursor: pointer;
+}
+.todo{
+    margin-top: 1.8em;
+    margin-bottom: 10px;
+    padding: 0 16px;
+    background-color: #3a7668;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+.todo .todo-text{
+    padding: 15px;
+    padding-right: 0;
+    flex-grow: 1;
+    transition: 200ms ease;
+}
+.delete-button{
+    padding: 3px;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.delete-button svg{
+    transition: 200ms ease;
+}
+.delete-button:hover svg{
+    fill: #ff0033;
+}
+.custom-checkbox{
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    min-height: 20px;
+    min-width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    transition: 200ms ease;
+    cursor: pointer;
+}
+input[type="checkbox"]:checked ~ .custom-checkbox{
+    background-color: var(--accent-color);
+}
+input[type="checkbox"]:checked ~ .custom-checkbox svg{
+    fill: var(--primary-color);
+}
+input[type="checkbox"]:checked ~ .todo-text{
+    text-decoration: line-through;
+    color: var(--secondary-color);
+}
+input[type="checkbox"]{
+    display: none;
+}
+@media(max-width: 500px){
+    html{
+        font-size: 12pt;
+    }
+    #add-button{
+        position: unset;
+        width: 100%;
+        margin-top: 10px;
+        padding: 15px;
+        height: auto;
+    }
+    h1{
+        margin-top: 50px;
+        font-size: 15vw;
+    }
 }
 
 .stats-container {
@@ -62,15 +152,10 @@ main {
     gap: 50px;
     width: 100%;
 }
-
-.details {
-    width: 100%;
-}
-
 #progressBar {
     width: 100%;
     height: 10px;
-    background-color: var(--secondaryBackground);
+    background-color:  #4A4D57;
     border-radius: 5px;
     margin-top: 20px;
 }
@@ -93,312 +178,6 @@ main {
     border-radius: 50%;
     font-size: 30px;
     font-weight: bold;
-}
-
-form {
-    margin-top: 60px;
-    width: 100%;
-    display: flex;
-    gap: 20px;
-}
-
-input {
-    flex: 1;
-    padding: 16px;
-    background-color: var(--secondaryBackground);
-    border: 1px solid var(--purple);
-    border-radius: 10px;
-    outline: none;
-    color: var(--text);
-}
-
-button {
-    padding: 12px 20px;
-    width: auto;
-    height: auto;
-    min-width: 50px;
-    border-radius: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--purple);
-    color: var(--text);
-    font-size: 18px; 
-    font-weight: bold;
-    outline: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.icons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-#task-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
-    width: 100%;
-    list-style: none;
-    overflow-y: auto;  /* Add vertical scrolling */
-    max-height: calc(100vh - 120px);  /* Adjust max height based on footer height */
-}
-
-.task p {
-    font-size: 18px;
-    margin:  0;
-    flex: 1; /* Ensures text takes up space before shrinking */
-}
-
-.taskItem {
-    display: flex;
-    
-    align-items: center;
-    justify-content: space-between;/* Spread items evenly */
-    padding: 12px 16px;
-    border-radius: 30px;
-    margin-bottom: 10px;
-    background-color: var(--secondaryBackground);
-    width: 100%;
-    gap: 10px;
-}
-
-.taskItem img {
-    cursor: pointer;
-    width: 20px;
-    height: 20px;
-}
-
-.task-status {
-    margin-top: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #7ba4cf; 
-    min-width: 120px;
-    text-align: center;
-}
-
-.task-status .status-label {
-    background-color: #D8EAFD; /* Light blue background */
-    padding: 3px 8px;
-    border-radius: 5px;
-    display: inline-block;
-}
-
-.taskItem .checkbox {
-    transform: scale(1.2); /* Slightly enlarge the checkbox */
-    cursor: pointer;
-}
-
-.task {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-.taskInput {
-    width: 20px;
-    height: 20px;
-}
-
-.completed p {
-    text-decoration: line-through;
-    color: var(--text);
-}
-
-.taskItem img {
-    width: 24px;
-    height: 24px;
-    margin: 0 10px;
-    cursor: pointer;
-}
-
-.task-left p {
-    font-size: 18px;
-    margin: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.completed {
-    text-decoration: line-through;
-    color: var(--text);
-    opacity: 0.7;
-}
-
-.checkbox {
-    transform: scale(1.2);
-    cursor: pointer;
-    min-width: 18px;
-}
-
-/* Middle section with status indicator */
-.task-middle {
-    display: flex;
-    justify-content: center;
-    padding: 0 10px;
-    flex: 0 0 auto;
-}
-
-/* Right section with dropdown and icons */
-.task-right {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex: 0 0 auto;
-}
-
-.task-icons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.task-icons img {
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.task-icons img:hover {
-    transform: scale(1.1);
-}
-
-/* Status indicator styles */
-.task-status-indicator {
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: bold;
-    min-width: 90px;
-    text-align: center;
-    white-space: nowrap;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-/* Status colors */
-.status-not-started {
-    background-color: #ffebee;
-    color: #c62828;
-    border: 1px solid #ef9a9a;
-}
-
-.status-in-progress {
-    background-color: #e3f2fd;
-    color: #1565c0;
-    border: 1px solid #90caf9;
-}
-
-.status-completed {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-    border: 1px solid #a5d6a7;
-}
-
-/* Dark mode status colors */
-.dark-mode .status-not-started {
-    background-color: #4a1414;
-    color: #ff8a8a;
-    border-color: #7d2424;
-}
-
-.dark-mode .status-in-progress {
-    background-color: #0d2b4a;
-    color: #8bb8ff;
-    border-color: #1a4b80;
-}
-
-.dark-mode .status-completed {
-    background-color: #133a16;
-    color: #7dd985;
-    border-color: #2c5d30;
-}
-
-/* Dropdown styles */
-.status-dropdown {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 14px;
-    padding: 6px 8px;
-    background-color: #828dff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 110px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.dark-mode .status-dropdown {
-    background-color: #d3d3d3;
-    color: #333;
-}
-
-/* Responsive styles */
-@media (max-width: 768px) {
-    .taskItem {
-        flex-wrap: wrap;
-        padding: 10px;
-        gap: 8px;
-    }
-    
-    .task-left {
-        width: 100%;
-        order: 1;
-    }
-    
-    .task-middle {
-        order: 3;
-        width: 50%;
-        justify-content: flex-start;
-        padding: 0;
-    }
-    
-    .task-right {
-        order: 2; 
-        width: 100%;
-        justify-content: space-between;
-    }
-    
-    .status-dropdown {
-        width: 100px;
-        font-size: 12px;
-        padding: 5px;
-    }
-    
-    .task-icons {
-        justify-content: flex-end;
-    }
-}
-
-/* Smallest screens */
-@media (max-width: 480px) {
-    .taskItem {
-        padding: 8px;
-    }
-    
-    .task-left p {
-        font-size: 14px;
-    }
-    
-    .status-dropdown {
-        width: 85px;
-        font-size: 11px;
-        padding: 4px;
-    }
-    
-    .task-status-indicator {
-        font-size: 10px;
-        padding: 3px 6px;
-        min-width: 70px;
-    }
-    
-    .task-icons img {
-        width: 20px;
-        height: 20px;
-    }
 }
 
 .footer {
@@ -459,1070 +238,44 @@ button {
     filter: brightness(1.2);
 }
 
-#newTask {
-    width: auto;
-    border-radius: 30px; 
-    margin-left: 10px;
-    padding: 14px 24px;
-    font-size: 22px; /* Larger add button */
+.filter-container {
+    padding-top: 1em;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
 }
 
-#resetTasks {
-    padding: 12px 24px;
-    border-radius: 32px;
-    background-color: var(--purple);
-    color: white;
+.filter-btn {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: 2px solid var(--secondary-color);
+    padding: 10px 20px;
     font-size: 16px;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: bold;
-    outline: none;
+    border-radius: 30px;
     cursor: pointer;
-    margin-left: 10px;
-    width: auto;
-    text-align: center;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-#resetTasks:hover {
-    background-color: rgb(102, 0, 139);
+.filter-btn:hover {
+    background-color: var(--secondary-color);
     transform: scale(1.05);
-    transition: all 0.2s ease;;
 }
 
-@media (max-width: 600px) {
-    button {
-        padding: 10px 16px;
-        font-size: 16px;
-        min-width: 40px;
-    }
-    #newTask {
-        font-size: 18px;
-    }
+.filter-btn.active {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: var(--primary-color);
 }
 
-@media screen and (max-width: 768px) {
-    #newTask {
-        width: 50%; /* Set + button width to 50% */
-    }
-
-    #resetTasks {
-        display: inline-block; /* Show reset button */
-    }
-
-    .theme-switch {
-        display: inline-block; /* Show theme toggle button */
-    }
-}
-
-/* Media queries for mobile screens */
-@media screen and (max-width: 480px) {
-    #newTask {
-        width: 50%; /* Keep the + button at 50% width */
-    }
-
-    #resetTasks {
-        display: inline-block; /* Show reset button */
-    }
-
-    .theme-switch {
-        display: inline-block; /* Show theme toggle button */
-    }
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background-color: var(--secondaryBackground);
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    color: var(--text);
-    max-width: 300px;
-    width: 90%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content p {
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-.modal-content button {
-    padding: 10px 40px;
-    background-color: var(--purple);
-    color: white;
-    border: none;
-    border-radius: 32px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-.modal-content button:hover {
-    background-color: #5b6efb;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .container {
-        margin: 60px auto 0;
-        padding: 10px;
-    }
-
-    .stats-container {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px;
-    }
-
-    form {
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 30px;
-    }
-
-    input {
-        width: 100%;
-        padding: 12px;
-    }
-
-    button {
-        width: 40px;
-        height: 40px;
-        font-size: 24px;
-    }
-
-    #task-list {
-        margin-top: 20px;
-    }
-
-    .footer {
-        padding: 10px;
-        font-size: 12px;
-    }
-
-    .footer p {
-        font-size: 14px;
-    }
-
-    .social-links a img {
-        width: 25px;
-        height: 25px;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        margin: 30px auto 0;
-        padding: 5px;
-    }
-
-    .stats-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        padding: 10px;
-    }
-
-    .details {
-        text-align: center;
-    }
-
-    #progressBar {
-        margin-top: 10px;
-    }
-
-    #number {
-        font-size: 25px;
-        width: 80px;
-        height: 80px;
-    }
-
-    form {
-        gap: 8px;
-    }
-
-    button {
-        font-size: 20px;
-        width: 35px;
-        height: 35px;
-    }
-
-    .footer {
-        padding: 8px;
-    }
-
-    .social-links a img {
-        width: 20px;
-        height: 20px;
-    }
-}
-
-.theme-switch {
-    --toggle-size: 20px;
-    --container-width: 4.5em;
-    --container-height: 2em;
-    --container-radius: 6.25em;
-    /* radius 0 - minecraft mode :) */
-    --container-light-bg: #3D7EAE;
-    --container-night-bg: #1D1F2C;
-    --circle-container-diameter: 2.8em;
-    --sun-moon-diameter: 1.7em;
-    --sun-bg: #ECCA2F;
-    --moon-bg: #C4C9D1;
-    --spot-color: #959DB1;
-    --circle-container-offset: calc((var(--circle-container-diameter) - var(--container-height)) / 2 * -1);
-    --stars-color: #fff;
-    --clouds-color: #F3FDFF;
-    --back-clouds-color: #AACADF;
-    --transition: .5s cubic-bezier(0, -0.02, 0.4, 1.25);
-    --circle-transition: .3s cubic-bezier(0, -0.02, 0.35, 1.17);
-    position: fixed;
-    top: 90px;
-    right: 105px;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-.theme-switch-label {
-    color: #fff;
-    font-size: 16px; /* Adjusted font size */
-    margin-bottom: 5px; /* Small space between the label and the button */
-}
-  
-.theme-switch, .theme-switch *, .theme-switch *::before, .theme-switch *::after {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-size: var(--toggle-size);
-}
-  
-.theme-switch__container {
-    width: var(--container-width);
-    height: var(--container-height);
-    background-color: var(--container-light-bg);
-    border-radius: var(--container-radius);
-    overflow: hidden;
-    cursor: pointer;
-    -webkit-box-shadow: 0em -0.062em 0.062em rgba(0, 0, 0, 0.25), 0em 0.062em 0.125em rgba(255, 255, 255, 0.94);
-    box-shadow: 0em -0.062em 0.062em rgba(0, 0, 0, 0.25), 0em 0.062em 0.125em rgba(255, 255, 255, 0.94);
-    -webkit-transition: var(--transition);
-    -o-transition: var(--transition);
-    transition: var(--transition);
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 8px;
-}
-  
-.theme-switch__container::before {
-    content: "";
-    position: absolute;
-    z-index: 1;
-    inset: 0;
-    -webkit-box-shadow: 0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset, 0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset;
-    box-shadow: 0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset, 0em 0.05em 0.187em rgba(0, 0, 0, 0.25) inset;
-    border-radius: var(--container-radius)
-}
-
-/* Mobile Specific Styles */
-@media (max-width: 768px) {
-    .theme-switch {
-        position: relative; /* Removed fixed positioning for scrollable behavior */
-    }
-    .theme-switch__container {
-        position: relative;
-        top: 35px; /* Adjust the percentage as needed */
-        left: 210px; /* Adjust the position */
-        width: 160px; /* Ensure the width remains consistent */
-        margin-top: 0;  /* Remove the default margin-top on mobile */
-    }
-
-    .theme-switch-label {
-        display: none;
-    }
-}
-
-/* Tablet and Small Laptop Specific Styles (768px to 1024px) */
-@media (min-width: 768px) and (max-width: 1024px) {
-    .theme-switch {
-        position: fixed; /* Fix the button in place on tablets */
-    }
-    .theme-switch__container {
-        position: relative;
-        top: 35px; /* Adjust position for tablets */
-        left: 60%; /* Center horizontally on tablet */
-        width: 120px; /* Suitable width for tablets */
-        margin-top: 0; /* Remove default margin-top */
-    }
-
-    .theme-switch-label {
-        display: none;
-    }
-}
-
-.theme-switch__checkbox {
-    display: none;
-    width: 60px; /* Larger button size */
-    height: 30px; /* Adjusted button height */
-}
-  
-.theme-switch__circle-container {
-    width: var(--circle-container-diameter);
-    height: var(--circle-container-diameter);
-    background-color: rgba(255, 255, 255, 0.1);
-    position: absolute;
-    left: var(--circle-container-offset);
-    top: var(--circle-container-offset);
-    border-radius: var(--container-radius);
-    -webkit-box-shadow: inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), 0 0 0 0.625em rgba(255, 255, 255, 0.1), 0 0 0 1.25em rgba(255, 255, 255, 0.1);
-    box-shadow: inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), inset 0 0 0 3.375em rgba(255, 255, 255, 0.1), 0 0 0 0.625em rgba(255, 255, 255, 0.1), 0 0 0 1.25em rgba(255, 255, 255, 0.1);
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-transition: var(--circle-transition);
-    -o-transition: var(--circle-transition);
-    transition: var(--circle-transition);
-    pointer-events: none;
-}
-  
-.theme-switch__sun-moon-container {
-    pointer-events: auto;
-    position: relative;
-    z-index: 2;
-    width: var(--sun-moon-diameter);
-    height: var(--sun-moon-diameter);
-    margin: auto;
-    border-radius: var(--container-radius);
-    background-color: var(--sun-bg);
-    -webkit-box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #a1872a inset;
-    box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #a1872a inset;
-    -webkit-filter: drop-shadow(0.062em 0.125em 0.125em rgba(0, 0, 0, 0.25)) drop-shadow(0em 0.062em 0.125em rgba(0, 0, 0, 0.25));
-    filter: drop-shadow(0.062em 0.125em 0.125em rgba(0, 0, 0, 0.25)) drop-shadow(0em 0.062em 0.125em rgba(0, 0, 0, 0.25));
-    overflow: hidden;
-    -webkit-transition: var(--transition);
-    -o-transition: var(--transition);
-    transition: var(--transition);
-}
-  
-.theme-switch__moon {
-    -webkit-transform: translateX(100%);
-    -ms-transform: translateX(100%);
-    transform: translateX(100%);
-    width: 100%;
-    height: 100%;
-    background-color: var(--moon-bg);
-    border-radius: inherit;
-    -webkit-box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #969696 inset;
-    box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #969696 inset;
-    -webkit-transition: var(--transition);
-    -o-transition: var(--transition);
-    transition: var(--transition);
-    position: relative;
-}
-  
-.theme-switch__spot {
-    position: absolute;
-    top: 0.75em;
-    left: 0.312em;
-    width: 0.75em;
-    height: 0.75em;
-    border-radius: var(--container-radius);
-    background-color: var(--spot-color);
-    -webkit-box-shadow: 0em 0.0312em 0.062em rgba(0, 0, 0, 0.25) inset;
-    box-shadow: 0em 0.0312em 0.062em rgba(0, 0, 0, 0.25) inset;
-}
-  
-.theme-switch__spot:nth-of-type(2) {
-    width: 0.375em;
-    height: 0.375em;
-    top: 0.937em;
-    left: 1.375em;
-}
-  
-.theme-switch__spot:nth-last-of-type(3) {
-    width: 0.25em;
-    height: 0.25em;
-    top: 0.312em;
-    left: 0.812em;
-}
-  
-.theme-switch__clouds {
-    width: 1.25em;
-    height: 1.25em;
-    background-color: var(--clouds-color);
-    border-radius: var(--container-radius);
-    position: absolute;
-    bottom: -0.625em;
-    left: 0.312em;
-    -webkit-box-shadow: 0.937em 0.312em var(--clouds-color), -0.312em -0.312em var(--back-clouds-color), 1.437em 0.375em var(--clouds-color), 0.5em -0.125em var(--back-clouds-color), 2.187em 0 var(--clouds-color), 1.25em -0.062em var(--back-clouds-color), 2.937em 0.312em var(--clouds-color), 2em -0.312em var(--back-clouds-color), 3.625em -0.062em var(--clouds-color), 2.625em 0em var(--back-clouds-color), 4.5em -0.312em var(--clouds-color), 3.375em -0.437em var(--back-clouds-color), 4.625em -1.75em 0 0.437em var(--clouds-color), 4em -0.625em var(--back-clouds-color), 4.125em -2.125em 0 0.437em var(--back-clouds-color);
-    box-shadow: 0.937em 0.312em var(--clouds-color), -0.312em -0.312em var(--back-clouds-color), 1.437em 0.375em var(--clouds-color), 0.5em -0.125em var(--back-clouds-color), 2.187em 0 var(--clouds-color), 1.25em -0.062em var(--back-clouds-color), 2.937em 0.312em var(--clouds-color), 2em -0.312em var(--back-clouds-color), 3.625em -0.062em var(--clouds-color), 2.625em 0em var(--back-clouds-color), 4.5em -0.312em var(--clouds-color), 3.375em -0.437em var(--back-clouds-color), 4.625em -1.75em 0 0.437em var(--clouds-color), 4em -0.625em var(--back-clouds-color), 4.125em -2.125em 0 0.437em var(--back-clouds-color);
-    -webkit-transition: 0.5s cubic-bezier(0, -0.02, 0.4, 1.25);
-    -o-transition: 0.5s cubic-bezier(0, -0.02, 0.4, 1.25);
-    transition: 0.5s cubic-bezier(0, -0.02, 0.4, 1.25);
-}
-  
-.theme-switch__stars-container {
-    position: absolute;
-    color: var(--stars-color);
-    top: -100%;
-    left: 0.312em;
-    width: 2.75em;
-    height: auto;
-    -webkit-transition: var(--transition);
-    -o-transition: var(--transition);
-    transition: var(--transition);
-}
-  
-/* actions */
-  
-.theme-switch__checkbox:checked + .theme-switch__container {
-    background-color: var(--container-night-bg);
-}
-  
-.theme-switch__checkbox:checked + .theme-switch__container .theme-switch__circle-container {
-    left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter));
-}
-  
-.theme-switch__checkbox:checked + .theme-switch__container .theme-switch__circle-container:hover {
-    left: calc(100% - var(--circle-container-offset) - var(--circle-container-diameter) - 0.187em)
-}
-  
-.theme-switch__circle-container:hover {
-    left: calc(var(--circle-container-offset) + 0.187em);
-}
-  
-.theme-switch__checkbox:checked + .theme-switch__container .theme-switch__moon {
-    -webkit-transform: translate(0);
-    -ms-transform: translate(0);
-    transform: translate(0);
-}
-  
-.theme-switch__checkbox:checked + .theme-switch__container .theme-switch__clouds {
-    bottom: -4.062em;
-}
-  
-.theme-switch__checkbox:checked + .theme-switch__container .theme-switch__stars-container {
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-}
-
-/* Media Queries for responsiveness */
-@media (max-width: 1200px) {
-    .container {
-        margin: 40px auto;
-        padding: 15px;
-    }
-
-    .stats-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-    }
-
-    form {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    input {
-        width: 100%;
-        padding: 12px;
-    }
-
-    button {
-        width: 45px;
-        height: 45px;
-        font-size: 22px;
-    }
-
-    #task-list {
-        margin-top: 20px;
-    }
-}
-
-/* General style for the dropdown */
-.status-dropdown {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 14px;
-    padding: 6px 8px;
-    background-color: #828dff; /* Light gray background */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 110px; /* Medium width */
-    cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 5px;
-}
-
-/* Dark mode styling */
-body.dark-mode .status-dropdown {
-    background-color: #d3d3d3; /* Light gray background in dark mode */
-    color: #333; /* Dark text color for readability */
-}
-
-/* Hover effect for the dropdown */
-.status-dropdown:hover {
-    border-color: #888;
-}
-
-/* Focus effect for the dropdown */
-.status-dropdown:focus {
+.filter-btn:focus {
     outline: none;
-    border-color: #007BFF;
 }
 
-/* Custom styling for options */
-.status-dropdown option {
-    padding: 5px;
-    font-size: 4px;
+.filter-btn:active {
+    transform: scale(0.95);
 }
 
-/* Style for the Not Started option */
-.status-dropdown option[value="not-started"] {
-    background-color: #ffebee; 
-    color: #d32f2f; /* Red */
-}
-
-/* Style for the In Progress option */
-.status-dropdown option[value="in-progress"] {
-    background-color: #fff3e0;
-    color: #f57c00; 
-}
-
-
-.status-dropdown option[value="completed"] {
-    background-color: #e8f5e9; 
-    color: #388e3c;
-}
-
-/* Style for the selected status */
-.status-dropdown:focus option:selected {
-    font-weight: bold;
-}
-
-/* Responsive design: Adjust width on smaller screens */
-@media (max-width: 600px) {
-    .status-dropdown {
-        width: 100%;
-    }
-}
-
-
-/* Hide dropdown and status for smaller screens */
-@media (max-width: 768px) {
-    .task-status, .status-dropdown {
-        display: none;
-    }
-}
-
-/* Add these new styles to your existing CSS */
-
-/* Task status indicator styles */
-.task-status-indicator {
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: bold;
-    margin-right: 10px;
-    min-width: 90px;
-    text-align: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-/* Status colors */
-.status-not-started {
-    background-color: #ffebee;
-    color: #c62828;
-    border: 1px solid #ef9a9a;
-}
-
-.status-in-progress {
-    background-color: #e3f2fd;
-    color: #1565c0;
-    border: 1px solid #90caf9;
-}
-
-.status-completed {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-    border: 1px solid #a5d6a7;
-}
-
-/* Dark mode status colors */
-.dark-mode .status-not-started {
-    background-color: #4a1414;
-    color: #ff8a8a;
-    border: 1px solid #7d2424;
-}
-
-.dark-mode .status-in-progress {
-    background-color: #0d2b4a;
-    color: #8bb8ff;
-    border: 1px solid #1a4b80;
-}
-
-.dark-mode .status-completed {
-    background-color: #133a16;
-    color: #7dd985;
-    border: 1px solid #2c5d30;
-}
-
-/* Update taskItem to include the status indicator */
-.taskItem {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 16px;
-    border-radius: 30px;
-    margin-bottom: 10px;
-    background-color: var(--secondaryBackground);
-    width: 100%;
-    gap: 10px;
-}
-
-/* Ensure task takes appropriate space */
-.task {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex: 1;
-}
-
-/* Keep status dropdown visible on mobile */
-@media (max-width: 768px) {
-    .status-dropdown {
-        display: flex;
-        width: 100px;
-        padding: 6px;
-        font-size: 12px;
-    }
-    
-    .taskItem {
-        flex-wrap: wrap;
-    }
-    
-    .task {
-        width: 100%;
-        margin-bottom: 8px;
-    }
-    
-    .icons {
-        width: 100%;
-        justify-content: space-between;
-    }
-    
-    .task-status-indicator {
-        width: auto;
-        padding: 3px 6px;
-        font-size: 10px;
-        margin-left: auto;
-    }
-}
-
-/* Smallest screens */
-@media (max-width: 480px) {
-    .status-dropdown {
-        width: 80px;
-        font-size: 11px;
-    }
-    
-    .taskItem {
-        padding: 10px;
-    }
-    
-    .task p {
-        font-size: 14px;
-    }
-    
-    .taskItem img {
-        width: 18px;
-        height: 18px;
-    }
-}
-
-.blue-task-container {
-    background-color: #3D7EAE; /* Blue background color */
-    border-radius: 15px;
-    padding: 20px;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    min-height: 100px; /* Ensures the container is visible even when empty */
-}
-
-/* Darker blue for dark mode */
-.dark-mode .blue-task-container {
-    background-color: #1D4A7A;
-}
-
-/* Keep the task list styling but remove any background that might conflict */
-#task-list {
-    background-color: transparent;
-    width: 100%;
-}
-
-/* Add this to your CSS file to enable proper text wrapping in task items */
-.task-left p {
-    font-size: 18px;
-    margin: 0;
-    white-space: normal; /* Allow text to wrap */
-    overflow-wrap: break-word; /* Break words that are too long */
-    word-wrap: break-word; /* Legacy support */
-    max-width: 100%; /* Ensure the text container doesn't exceed its parent */
-    line-height: 1.4; /* Improve readability of wrapped text */
-}
-
-/* These selectors might already exist in your CSS, so replace or modify accordingly */
-.task-left {
-    display: flex;
-    align-items: flex-start; /* Changed from center to allow proper text wrapping */
-    gap: 10px;
-    flex: 1;
-    min-width: 0; /* Allow flexbox to shrink this item below content size */
-    overflow-wrap: break-word; /* Ensure long words wrap */
-  }
-
-/* Remove the blue container styles since we're removing that element */
-.blue-task-container {
-    display: none; /* Simply hide it, or you can remove this rule entirely from your CSS */
-}
-
-/* Style the task list directly for better spacing */
-#task-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
-    width: 100%;
-    list-style: none;
-    overflow-y: auto;
-    max-height: calc(100vh - 120px);
-    padding: 0; /* Ensure there's no default padding */
-    background-color: transparent; /* Keep background transparent */
-}
-
-/* Improve text wrapping in task items */
-.task-left {
-    display: flex;
-    align-items: flex-start; /* Changed from center to allow proper text wrapping */
-    gap: 10px;
-    flex: 1;
-    min-width: 0; /* Allow flexbox to shrink this item below content size */
-    overflow-wrap: break-word; /* Ensure long words wrap */
-  }
-  
-  .task-left p {
-    font-size: 18px;
-    margin: 0;
-    white-space: normal; /* Allow text to wrap */
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    max-width: 100%;
-    line-height: 1.4;
-  }
-  
-  /* Make task item structure more flexible for wrapping */
-  .taskItem {
-    display: flex;
-    flex-wrap: wrap; /* Allow wrapping for smaller screens */
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 16px;
-    border-radius: 30px;
-    margin-bottom: 10px;
-    background-color: var(--secondaryBackground);
-    width: 100%;
-    gap: 10px;
-  }
-  
-  /* Responsive design for full-width on tablets and mobile */
-  @media (max-width: 1024px) {
-    .container {
-      max-width: 95%; /* Increase container width on tablets */
-      margin: 80px auto 0;
-    }
-    
-    /* Ensure task list has adequate height on tablets */
-    #task-list {
-      max-height: calc(100vh - 220px);
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .container {
-      max-width: 100%; /* Full width on mobile */
-      margin: 40px auto 0;
-      padding: 0 15px; /* Add some padding on the sides */
-    }
-    
-    .task-left {
-      width: 100%; /* Full width for task text */
-    }
-    
-    .taskItem {
-      flex-direction: column; /* Stack elements for very narrow screens */
-      align-items: flex-start;
-      padding: 15px;
-    }
-    
-    .task-middle {
-      order: 2;
-      padding: 5px 0;
-    }
-    
-    .task-right {
-      width: 100%;
-      justify-content: space-between;
-      order: 3;
-    }
-    
-    /* Make checkbox and text stay on same line */
-    .task-left {
-      display: flex;
-      align-items: flex-start;
-    }
-    
-    .checkbox {
-      margin-top: 3px; /* Align checkbox with first line of text */
-    }
-  }
-  
-  /* For very small screens, optimize further */
-  @media (max-width: 480px) {
-    .stats-container {
-      padding: 15px;
-    }
-    
-    input {
-      padding: 10px;
-    }
-    
-    .task-status-indicator {
-      margin: 5px 0;
-    }
-    
-    #task-list {
-      max-height: calc(100vh - 240px);
-    }
-  }
-
-/* Update taskItem structure for better responsiveness */
-.taskItem {
-    display: flex;
-    align-items: center;
-    padding: 12px 16px;
-    border-radius: 30px;
-    margin-bottom: 10px;
-    background-color: var(--secondaryBackground);
-    width: 100%;
-    gap: 10px;
-    flex-wrap: nowrap; /* Prevent wrapping by default */
-  }
-  
-  /* Improve left section with checkbox and text */
-  .task-left {
-    display: flex;
-    align-items: flex-start; /* Align to top for multiline text */
-    gap: 10px;
-    flex: 1;
-    min-width: 0; /* Allow content to shrink below minimum size */
-    overflow-wrap: break-word; /* Break long words */
-  }
-  
-  .task-left p {
-    font-size: 18px;
-    margin: 0;
-    white-space: normal; /* Allow text wrapping */
-    overflow-wrap: break-word;
-    word-break: break-word; /* Handle very long words */
-    max-width: 100%;
-    line-height: 1.4;
-  }
-  
-  .checkbox {
-    margin-top: 3px; /* Align with first line of text */
-    flex-shrink: 0; /* Prevent checkbox from shrinking */
-  }
-  
-  /* Middle section with status indicator */
-  .task-middle {
-    display: flex;
-    justify-content: center;
-    padding: 0 5px;
-    flex-shrink: 0; /* Prevent shrinking */
-  }
-  
-  /* Right section with dropdown and action buttons */
-  .task-right {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0; /* Prevent shrinking */
-  }
-  
-  .task-icons {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0; /* Prevent icons from shrinking */
-  }
-  
-  /* Make dropdown and status more consistent */
-  .status-dropdown {
-    width: 110px;
-    flex-shrink: 0; /* Prevent dropdown from shrinking */
-  }
-  
-  .task-status-indicator {
-    min-width: 90px;
-    flex-shrink: 0; /* Prevent status from shrinking */
-  }
-  
-  /* Tablet Responsive Design */
-  @media (max-width: 768px) {
-    .taskItem {
-      flex-wrap: wrap; /* Allow wrapping on smaller screens */
-      gap: 8px;
-      padding: 10px 12px;
-    }
-    
-    .task-left {
-      width: 100%; /* Full width for text on smaller screens */
-      margin-bottom: 6px;
-    }
-    
-    .task-middle {
-      order: 2;
-      padding: 0;
-      margin-right: auto; /* Push to the left */
-    }
-    
-    .task-right {
-      order: 3;
-      width: auto;
-      margin-left: auto; /* Push to the right */
-    }
-    
-    .status-dropdown {
-      width: 100px;
-      font-size: 12px;
-      padding: 4px 6px;
-    }
-    
-    .task-status-indicator {
-      font-size: 11px;
-      min-width: 80px;
-      padding: 3px 6px;
-    }
-  }
-  
-  /* Mobile-specific adjustments */
-  @media (max-width: 480px) {
-    .taskItem {
-      padding: 8px 10px;
-    }
-    
-    .task-left p {
-      font-size: 16px;
-    }
-    
-    /* Stack the elements vertically on very small screens */
-    .task-right {
-      width: 100%;
-      justify-content: space-between;
-      margin-top: 6px;
-    }
-    
-    .task-middle {
-      margin-right: 0;
-    }
-    
-    .task-icons img {
-      width: 20px;
-      height: 20px;
-    }
-    
-    .status-dropdown {
-      width: 90px;
-      font-size: 11px;
-    }
-    
-    .task-status-indicator {
-      font-size: 10px;
-      min-width: 70px;
-      padding: 2px 5px;
-    }
-    
-    /* Ensure progress stats remain visible and functional */
-    .stats-container {
-      padding: 15px;
-    }
-    
-    #number {
-      width: 80px;
-      height: 80px;
-      font-size: 22px;
-    }
-  }
-  
-  /* Ensure task list has proper height and scrolling */
-  #task-list {
-    max-height: calc(100vh - 300px);
-    overflow-y: auto;
-    margin-bottom: 70px; /* Add space for footer */
-    padding-bottom: 20px;
-  }
-
-  @media screen and (max-width: 768px) {
-    #task-list {
-        max-height: calc(100vh - 200px);
-    }
-    .taskItem {
-        padding: 10px;
-    }
-    .task-left p {
-        font-size: 16px;
-    }
-    .task-right {
-        width: 100%;
-        justify-content: space-between;
-        margin-top: 6px;
-    }
-    .task-middle {
-        margin-right: 0;
-    }
-    .task-icons img {
-        width: 20px;
-        height: 20px;
-    }
-  }
-  
-  /* Add these styles to your existing CSS file */
-
-/* Filter Buttons Container */
 .filter-container {
     display: flex;
     justify-content: center;
@@ -1532,69 +285,51 @@ body.dark-mode .status-dropdown {
     width: 100%;
 }
 
-/* Filter Button Styling */
-.filter-btn {
-    padding: 8px 16px;
-    background-color: var(--secondaryBackground);
-    color: var(--text);
-    border: 1px solid var(--purple);
-    border-radius: 20px;
+.status-dropdown {
+    background-color: var(--primary-color);
+    border: 1px solid var(--secondary-color);
+    color: var(--text-color);
+    padding: 10px;
+    margin-right: 3.4em;
+    font-size: 16px;
+    border-radius: 34px;
     cursor: pointer;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    min-width: 100px;
+    width: 9.8em;
     text-align: center;
 }
 
-.filter-btn:hover {
-    background-color: var(--purple);
-    transform: translateY(-2px);
+/* Dropdown Option Styling */
+.status-dropdown option {
+    background-color: var(--primary-color);
+    color: var(--text-color);
 }
 
-.filter-btn.active {
-    background-color: var(--purple);
-    color: white;
-    font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+/* Completed Status */
+.status-dropdown option[value="completed"] {
+    background-color: #66ff66;
+    color: #1C1D20;
 }
 
-/* Status Count Badges */
-.filter-btn .count-badge {
-    display: inline-block;
-    background-color: var(--background);
-    color: var(--text);
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    font-size: 12px;
-    line-height: 20px;
-    text-align: center;
-    margin-left: 5px;
+/* In-progress Status */
+.status-dropdown option[value="in-progress"] {
+    background-color: #ffcc00;
+    color: #1C1D20;
 }
 
-/* Responsive adjustments for filters */
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-    .filter-container {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        width: 100w;
-        padding: 0 20px;
-        box-sizing: border-box;
-        margin-left: calc(-50vw + 50%);
-        margin-left: 19px;
-    }
-
-    .filter-btn {
-        flex: 1 1 22%;
-        margin: 8px 4px;
-        min-width: auto;
-        font-size: 14px;
-        text-align: center;
-    }
+/* Not Started Status */
+.status-dropdown option[value="not-started"] {
+    background-color: #ff6600;
+    color: #1C1D20;
 }
 
-/* Task visibility for filtering */
-.task-hidden {
-    display: none;
+/* Hover Effect on Options */
+.status-dropdown option:hover {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+}
+
+/* Focused Dropdown */
+.status-dropdown:focus {
+    outline: none;
+    border-color: var(--accent-color);
 }
