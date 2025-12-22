@@ -88,21 +88,23 @@ function App() {
       </div>
 
       <main className="container">
-        <header>
-          <h1>Todo List</h1>
-          <p className="subtitle">Stay productive, stay focused.</p>
-        </header>
+        <div className="dashboard-header">
+          <header>
+            <h1>Todo List</h1>
+            <p className="subtitle">Stay productive, stay focused.</p>
+          </header>
 
-        <div className="stats-container">
-          <div className="progress-text">
-            <span className="progress-title">Your Progress</span>
-            <span className="progress-subtitle">{getProgressMessage()}</span>
-          </div>
-          <div 
-            className="progress-circle" 
-            style={{ background: `conic-gradient(var(--primary-color) ${progressPercent}%, #dfe6e9 ${progressPercent}%)` }}
-          >
-            <span className="progress-number">{completedCount}/{totalCount}</span>
+          <div className="stats-container">
+            <div className="progress-text">
+              <span className="progress-title">Your Progress</span>
+              <span className="progress-subtitle">{getProgressMessage()}</span>
+            </div>
+            <div 
+              className="progress-circle" 
+              style={{ background: `conic-gradient(var(--primary-color) ${progressPercent}%, #dfe6e9 ${progressPercent}%)` }}
+            >
+              <span className="progress-number">{completedCount}/{totalCount}</span>
+            </div>
           </div>
         </div>
 
