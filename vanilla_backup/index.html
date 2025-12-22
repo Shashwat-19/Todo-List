@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Todo App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="./assets/icontodo.png">
+    
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- Background Elements -->
+    <div class="background-circles">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+    </div>
+
+    <!-- Main Card -->
+    <main class="container">
+        <header>
+            <h1>Todo List</h1>
+            <p class="subtitle">Stay productive, stay focused.</p>
+        </header>
+
+        <!-- Progress Stats -->
+        <div class="stats-container">
+            <div class="progress-text">
+                <span class="progress-title">Your Progress</span>
+                <span class="progress-subtitle" id="progress-msg">Keep it up!</span>
+            </div>
+            <div class="progress-circle" id="progress-circle">
+                <span class="progress-number" id="progress-number">0/0</span>
+            </div>
+        </div>
+
+        <!-- Input Form -->
+        <form id="todo-form">
+            <div class="input-group">
+                <input type="text" id="todo-input" placeholder="Add a new task..." autocomplete="off">
+            </div>
+            
+            <div class="input-options">
+                <select id="priority-select" title="Select Priority">
+                    <option value="low">Low Priority</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High Priority</option>
+                </select>
+                <input type="date" id="due-date-input" title="Select Due Date">
+            </div>
+
+            <button type="submit" id="add-button" aria-label="Add task">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                </svg>
+            </button>
+        </form>
+
+        <!-- Filters -->
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="active">Active</button>
+            <button class="filter-btn" data-filter="completed">Completed</button>
+        </div>
+
+        <!-- Task List -->
+        <ul id="task-list">
+            <!-- Tasks will be injected here via JS -->
+        </ul>
+        
+        <div id="empty-state" class="empty-state" style="display: none;">
+            No tasks yet. Add one to get started!
+        </div>
+    </main>
+
+</body>
+</html>
