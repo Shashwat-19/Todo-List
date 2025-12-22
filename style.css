@@ -1,5 +1,5 @@
 /* Google Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 :root {
   --primary-color: #6c5ce7;
@@ -14,13 +14,21 @@
   --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   --border-radius: 16px;
   --transition: all 0.3s ease;
+  
+  /* Priority Colors */
+  --priority-low-bg: #e1f7e7;
+  --priority-low-text: #00b894;
+  --priority-med-bg: #fff4e6;
+  --priority-med-text: #fdcb6e;
+  --priority-high-bg: #ffeaea;
+  --priority-high-text: #ff7675;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
@@ -139,7 +147,7 @@ h1 {
 }
 
 .progress-circle::before {
-  content: "";
+  content: '';
   position: absolute;
   width: 45px;
   height: 45px;
@@ -158,8 +166,8 @@ h1 {
 form {
   display: flex;
   gap: 10px;
-  margin-bottom: 2rem;
-  position: relative;
+  margin-bottom: 1.5rem;
+  flex-direction: column;
 }
 
 .input-group {
@@ -167,26 +175,32 @@ form {
   width: 100%;
 }
 
-input[type="text"] {
+.input-options {
+    display: flex;
+    gap: 10px;
+}
+
+input[type="text"], select, input[type="date"] {
   width: 100%;
-  padding: 1rem 1.2rem;
+  padding: 0.8rem 1rem;
   border: 2px solid #dfe6e9;
-  border-radius: 30px;
-  font-size: 1rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
   outline: none;
   transition: var(--transition);
   background: transparent;
+  color: var(--text-primary);
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus, select:focus, input[type="date"]:focus {
   border-color: var(--primary-color);
   box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.1);
 }
 
 #add-button {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 12px;
   border: none;
   background: var(--primary-color);
   color: white;
@@ -195,12 +209,12 @@ input[type="text"]:focus {
   align-items: center;
   cursor: pointer;
   transition: var(--transition);
-  flex-shrink: 0;
+  font-weight: 500;
 }
 
 #add-button:hover {
   background: var(--secondary-color);
-  transform: scale(1.05);
+  transform: translateY(-2px);
 }
 
 #add-button svg {
@@ -209,14 +223,34 @@ input[type="text"]:focus {
   fill: currentColor;
 }
 
-/* Filter Tabs (Optional future feature placeholder implemented visually)
-.filters {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+/* Filter Tabs */
+.filter-container {
+    display: flex;
+    justify-content: space-between;
+    background: #f1f2f6;
+    padding: 5px;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
 }
-*/
+
+.filter-btn {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-secondary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 0.9rem;
+}
+
+.filter-btn.active {
+    background: white;
+    color: var(--primary-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
 
 /* Task List */
 ul {
@@ -229,10 +263,11 @@ li {
   border-bottom: 1px solid #f0f0f0;
   padding: 1rem;
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Align top for multi-line content */
   gap: 1rem;
   transition: var(--transition);
   animation: slideIn 0.3s ease;
+  position: relative;
 }
 
 li:first-child {
@@ -250,6 +285,14 @@ li:hover {
   background: #fafafa;
 }
 
+/* Content wrapper inside li */
+.task-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
 /* Custom Checkbox */
 .checkbox-container {
   position: relative;
@@ -257,6 +300,7 @@ li:hover {
   width: 24px;
   height: 24px;
   flex-shrink: 0;
+  margin-top: 3px;
 }
 
 .checkbox-container input {
@@ -307,7 +351,6 @@ li:hover {
 }
 
 .todo-text {
-  flex-grow: 1;
   font-size: 1rem;
   color: var(--text-primary);
   transition: var(--transition);
@@ -319,23 +362,56 @@ li:hover {
   color: #b2bec3;
 }
 
-.delete-btn {
+.meta-info {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 0.75rem;
+}
+
+/* Badges */
+.badge {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+}
+
+.badge-high { background: var(--priority-high-bg); color: var(--priority-high-text); }
+.badge-medium { background: var(--priority-med-bg); color: var(--priority-med-text); }
+.badge-low { background: var(--priority-low-bg); color: var(--priority-low-text); }
+
+.date-text {
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.delete-btn, .edit-btn {
   background: none;
   border: none;
   cursor: pointer;
-  color: #ff7675;
   opacity: 0;
   transition: var(--transition);
   padding: 5px;
   border-radius: 4px;
 }
 
-li:hover .delete-btn {
+.delete-btn { color: #ff7675; }
+.edit-btn { color: var(--primary-color); }
+
+li:hover .delete-btn, li:hover .edit-btn {
   opacity: 1;
 }
 
-.delete-btn:hover {
-  background: rgba(255, 118, 117, 0.1);
+.delete-btn:hover { background: rgba(255, 118, 117, 0.1); }
+.edit-btn:hover { background: rgba(108, 92, 231, 0.1); }
+
+.actions {
+    display: flex;
+    align-items: center;
 }
 
 /* Empty State */
@@ -348,32 +424,17 @@ li:hover .delete-btn {
 
 /* Animations */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes slideOut {
-  to {
-    opacity: 0;
-    transform: translateX(20px);
-  }
+  to { opacity: 0; transform: translateX(20px); }
 }
 
 /* Responsive */
@@ -381,7 +442,7 @@ li:hover .delete-btn {
   .container {
     padding: 1.5rem;
   }
-
+  
   h1 {
     font-size: 1.5rem;
   }
