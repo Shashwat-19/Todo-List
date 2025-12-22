@@ -1,243 +1,166 @@
+/**
+ * Modern Todo App Logic
+ * Features: State management, LocalStorage, Animations, Confetti
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
-    const taskInput = document.getElementById('todo-input');
+    // --- State Management ---
+    let todos = JSON.parse(localStorage.getItem('todos')) || [];
+    
+    // --- DOM Elements ---
+    const form = document.getElementById('todo-form');
+    const input = document.getElementById('todo-input');
     const taskList = document.getElementById('task-list');
-    const addButton = document.getElementById('add-button');
-    const numberDisplay = document.getElementById('number');
-    const progressBar = document.getElementById('progress');
-    const filterButtons = document.querySelectorAll('.filter-btn');
+    const emptyState = document.getElementById('empty-state');
+    const progressNumber = document.getElementById('progress-number');
+    const progressMsg = document.getElementById('progress-msg');
+    const progressCircle = document.getElementById('progress-circle');
 
-    let tasks = []; // Array to store tasks
-    let currentFilter = 'all';
+    // --- Functions ---
 
-    // Load tasks from localStorage
-    function loadTasksFromLocalStorage() {
-        const storedTasks = localStorage.getItem('todoTasks');
-        if (storedTasks) {
-            tasks = JSON.parse(storedTasks);
+    const saveTodos = () => {
+        localStorage.setItem('todos', JSON.stringify(todos));
+        updateStats();
+        renderTodos();
+    };
+
+    const updateStats = () => {
+        const completed = todos.filter(t => t.completed).length;
+        const total = todos.length;
+        
+        progressNumber.innerText = `${completed}/${total}`;
+        
+        // Calculate progress percentage
+        const percent = total === 0 ? 0 : (completed / total) * 100;
+        
+        // Update conic-gradient for the circle
+        progressCircle.style.background = `conic-gradient(var(--primary-color) ${percent}%, #dfe6e9 ${percent}%)`;
+        
+        // Update motivational message
+        if (total === 0) {
+            progressMsg.innerText = "Let's get started!";
+        } else if (percent === 100) {
+            progressMsg.innerText = "All done! Amazing job!";
+        } else if (percent >= 50) {
+            progressMsg.innerText = "Halfway there, keep going!";
+        } else {
+            progressMsg.innerText = "Keep it up!";
         }
-    }
+    };
 
-    // Save tasks to localStorage
-    function saveTasksToLocalStorage() {
-        localStorage.setItem('todoTasks', JSON.stringify(tasks));
-    }
-
-    // Load tasks when the page loads
-    loadTasksFromLocalStorage();
-    renderTasks(); // Render the tasks that were loaded
-
-    // Handle adding a new task
-    addButton.addEventListener('click', (e) => {
-        e.preventDefault(); // Prevent form submission
-        const taskText = taskInput.value.trim();
-
-        if (taskText) {
-            const newTask = {
-                text: taskText,
-                status: 'not-started', // Default status
-            };
-
-            tasks.push(newTask);
-            taskInput.value = ''; // Clear input field
-            saveTasksToLocalStorage(); // Save to localStorage
-            renderTasks();
-        }
-    });
-
-    function createStatusDropdown(task, index) {
-        const select = document.createElement('select');
-        select.className = 'status-dropdown';
-        ['not-started', 'in-progress', 'completed'].forEach(status => {
-            const option = document.createElement('option');
-            option.value = status;
-            option.textContent = status.replace('-', ' ');
-            if (task.status === status) option.selected = true;
-            select.appendChild(option);
-        });
-
-        select.addEventListener('change', () => {
-            task.status = select.value;
-            saveTasksToLocalStorage();
-            renderTasks();
-        });
-
-        return select;
-    }
-
-    function renderTasks() {
-        taskList.innerHTML = ''; // Clear current task list
-        let completedCount = 0;
-
-        const filteredTasks = tasks.filter(task => {
-            if (currentFilter === 'all') return true;
-            return task.status === currentFilter;
-        });
-
-        filteredTasks.forEach((task, index) => {
-            const li = document.createElement('li');
-            li.classList.add('todo');
-
-            const taskLabel = document.createElement('span');
-            taskLabel.classList.add('todo-text');
-            taskLabel.textContent = task.text;
-
-            const statusDropdown = createStatusDropdown(task, index);
-
-            const deleteButton = document.createElement('button');
-            deleteButton.classList.add('delete-button');
-            deleteButton.innerHTML = `<svg fill="var(--secondary-color)" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/></svg>`;
-            deleteButton.addEventListener('click', () => {
-                tasks.splice(index, 1);
-                saveTasksToLocalStorage();
-                renderTasks();
-            });
-
-            li.appendChild(taskLabel);
-            li.appendChild(statusDropdown);
-            li.appendChild(deleteButton);
-            taskList.appendChild(li);
-
-            if (task.status === 'completed') {
-                completedCount++;
+    const toggleComplete = (id) => {
+        todos = todos.map(todo => {
+            if (todo.id === id) {
+                const isCompleted = !todo.completed;
+                if (isCompleted) matchConfetti();
+                return { ...todo, completed: isCompleted };
             }
+            return todo;
         });
+        saveTodos();
+    };
 
-        updateStats(tasks.length, completedCount);
-        updateFilterCounts();
-    }
-
-    function renderTasks() {
-        taskList.innerHTML = ''; // Clear current task list
-        let completedCount = 0;
-    
-        const filteredTasks = tasks.filter(task => {
-            if (currentFilter === 'all') return true;
-            return task.status === currentFilter;
-        });
-    
-        filteredTasks.forEach((task, index) => {
-            const li = document.createElement('li');
-            li.classList.add('todo');
-    
-            // Create checkbox
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.className = 'todo-checkbox';
-            checkbox.checked = task.status === 'completed'; // Check if the task is completed
-            checkbox.addEventListener('change', () => {
-                task.status = checkbox.checked ? 'completed' : 'not-started'; // Update task status
-                saveTasksToLocalStorage();
-                renderTasks();
-            });
-    
-            const taskLabel = document.createElement('span');
-            taskLabel.classList.add('todo-text');
-            taskLabel.textContent = task.text;
-    
-            const statusDropdown = createStatusDropdown(task, index);
-    
-            const deleteButton = document.createElement('button');
-            deleteButton.classList.add('delete-button');
-            deleteButton.innerHTML = `<svg fill="var(--secondary-color)" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/></svg>`;
-            deleteButton.addEventListener('click', () => {
-                tasks.splice(index, 1);
-                saveTasksToLocalStorage();
-                renderTasks();
-            });
-    
-            // Append elements to the list item
-            li.appendChild(checkbox);  // Add checkbox to the task
-            li.appendChild(taskLabel);
-            li.appendChild(statusDropdown);
-            li.appendChild(deleteButton);
-            taskList.appendChild(li);
-    
-            if (task.status === 'completed') {
-                completedCount++;
-            }
-        });
-    
-        updateStats(tasks.length, completedCount);
-        updateFilterCounts();
-    }
-    
-
-    // Update the task stats and progress bar
-    function updateStats(total, completed) {
-        numberDisplay.textContent = `${completed} / ${total}`;
-        const progress = total === 0 ? 0 : (completed / total) * 100;
-        progressBar.style.width = `${progress}%`;
-
-        if (completed === total && total > 0) {
-            launchConfetti();
-            showMotivationalModal();
-        }
-    }
-
-    // Launch confetti when all tasks are completed
-    function launchConfetti() {
-        if (typeof confetti !== 'undefined') {
-            confetti({
-                particleCount: 200,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#ff00ff', '#ff6600', '#66ff66', '#00ccff', '#ffcc00'],
-                scalar: 1.2,
+    const deleteTask = (id) => {
+        // Optimistic UI update handled in render, but for smooth exit animation:
+        const item = document.getElementById(`todo-${id}`);
+        if(item) {
+            item.style.animation = 'slideOut 0.3s ease forwards';
+            item.addEventListener('animationend', () => {
+                todos = todos.filter(t => t.id !== id);
+                saveTodos();
             });
         } else {
-            console.error("Confetti library not loaded correctly.");
+            todos = todos.filter(t => t.id !== id);
+            saveTodos();
         }
-    }
+    };
 
-    const motivationalModal = document.getElementById('motivationalModal');
-    const closeModalButton = document.getElementById('closeModal');
-    closeModalButton.addEventListener('click', () => {
-        motivationalModal.style.display = 'none';
+    const addTodo = (text) => {
+        const newTodo = {
+            id: Date.now(),
+            text: text,
+            completed: false
+        };
+        todos.push(newTodo);
+        saveTodos();
+        input.value = '';
+    };
+
+    const matchConfetti = () => {
+        if (typeof confetti === 'function') {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+    };
+
+    // --- Rendering ---
+    const renderTodos = () => {
+        taskList.innerHTML = '';
+        
+        if (todos.length === 0) {
+            emptyState.style.display = 'block';
+        } else {
+            emptyState.style.display = 'none';
+        }
+
+        todos.forEach(todo => {
+            const li = document.createElement('li');
+            li.id = `todo-${todo.id}`;
+            if (todo.completed) li.classList.add('completed');
+            
+            // Checkbox Container
+            const checkboxContainer = document.createElement('label');
+            checkboxContainer.className = 'checkbox-container';
+            
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.checked = todo.completed;
+            checkbox.addEventListener('change', () => toggleComplete(todo.id));
+            
+            const checkmark = document.createElement('span');
+            checkmark.className = 'checkmark';
+            
+            checkboxContainer.appendChild(checkbox);
+            checkboxContainer.appendChild(checkmark);
+            
+            // Text
+            const span = document.createElement('span');
+            span.className = 'todo-text';
+            span.innerText = todo.text;
+            
+            // Delete Button
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="currentColor">
+                    <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/>
+                </svg>
+            `;
+            deleteBtn.ariaLabel = "Delete task";
+            deleteBtn.addEventListener('click', () => deleteTask(todo.id));
+            
+            li.appendChild(checkboxContainer);
+            li.appendChild(span);
+            li.appendChild(deleteBtn);
+            
+            taskList.appendChild(li);
+        });
+        
+        updateStats(); // Ensure stats are sync
+    };
+
+    // --- Event Listeners ---
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const text = input.value.trim();
+        if (text) {
+            addTodo(text);
+        }
     });
 
-    function showMotivationalModal() {
-        motivationalModal.style.display = 'flex';
-    }
-
-    function updateFilterCounts() {
-        const allCount = tasks.length;
-        const completedCount = tasks.filter(task => task.status === 'completed').length;
-        const inProgressCount = tasks.filter(task => task.status === 'in-progress').length;
-        const notStartedCount = tasks.filter(task => task.status === 'not-started').length;
-
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            const filter = btn.getAttribute('data-filter');
-            let count = 0;
-
-            switch (filter) {
-                case 'all':
-                    count = allCount;
-                    break;
-                case 'completed':
-                    count = completedCount;
-                    break;
-                case 'in-progress':
-                    count = inProgressCount;
-                    break;
-                case 'not-started':
-                    count = notStartedCount;
-                    break;
-            }
-
-            let badge = btn.querySelector('.count-badge');
-            if (!badge) {
-                badge = document.createElement('span');
-                badge.className = 'count-badge';
-                btn.appendChild(badge);
-            }
-            badge.textContent = count;
-        });
-    }
-
-    filterButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            currentFilter = e.target.dataset.filter;
-            renderTasks();
-        });
-    })
+    // Initial Init
+    renderTodos();
 });

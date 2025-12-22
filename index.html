@@ -1,85 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Todo list</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="shortcut icon" href="./assets/icontodo.png" type="image/x-icon" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Todo App</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="./assets/icontodo.png">
+    
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="script.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js" defer></script>
 </head>
 <body>
-    <main>
-            <!-- Stats -->
-            <div class="stats-container">
-                <div class="details">
-                    <h1>Todo app</h1>
-                    <p>Keep it up.!</p>
-                    <div id="progressBar">
-                        <div id="progress"></div>
-                    </div>
-                </div>
-                <div class="stats-numbers">
-                    <p id="number">0 / 0</p>
-                </div>
+
+    <!-- Background Elements -->
+    <div class="background-circles">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+    </div>
+
+    <!-- Main Card -->
+    <main class="container">
+        <header>
+            <h1>Todo List</h1>
+            <p class="subtitle">Stay productive, stay focused.</p>
+        </header>
+
+        <!-- Progress Stats -->
+        <div class="stats-container">
+            <div class="progress-text">
+                <span class="progress-title">Your Progress</span>
+                <span class="progress-subtitle" id="progress-msg">Keep it up!</span>
             </div>
+            <div class="progress-circle" id="progress-circle">
+                <span class="progress-number" id="progress-number">0/0</span>
+            </div>
+        </div>
 
-            <!-- Input form -->
-            <form>
-                <input id="todo-input" type="text" 
-                placeholder="write anything and hit enter to add" autocomplete="off">
-                <button id="add-button">ADD</button>
-                <!--<button id="resetTasks" type="button">Reset</button>-->
-            </form>
-            <!-- Filters 
-            <div class="filter-container">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="completed">Completed</button>
-                <button class="filter-btn" data-filter="in-progress">In Progress</button>
-                <button class="filter-btn" data-filter="not-started">Not Started</button>
-            </div>-->
+        <!-- Input Form -->
+        <form id="todo-form">
+            <div class="input-group">
+                <input type="text" id="todo-input" placeholder="Add a new task..." autocomplete="off">
+            </div>
+            <button type="submit" id="add-button" aria-label="Add task">
+                <svg viewBox="0 0 24 24">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                </svg>
+            </button>
+        </form>
 
-            <!-- Task list with template structure -->
-            <ul id="task-list">
-                <!-- Example item (can be removed if you're generating dynamically via JS) -->
-                <li class="todo">
-                    <input type="checkbox" id="todo-1" />
-                    <label class="custom-checkbox" for="todo-1">
-                        <svg fill="transparent" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
-                            <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/>
-                        </svg>
-                    </label>
-                    <label for="todo-1" class="todo-text">your tasks..</label>
-                    <button class="delete-button">
-                        <svg fill="var(--secondary-color)" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
-                            <path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360Z"/>
-                        </svg>
-                    </button>
-                </li>
-            </ul>
+        <!-- Task List -->
+        <ul id="task-list">
+            <!-- Tasks will be injected here via JS -->
+        </ul>
+        
+        <div id="empty-state" class="empty-state" style="display: none;">
+            No tasks yet. Add one to get started!
         </div>
     </main>
 
-    <!-- Footer
-    <footer class="footer">
-        <div class="footer-content">
-            <p>Made by <strong>Shashwat</strong></p>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/shashwatk1956/" target="_blank" rel="noopener">
-                    <img src="./assets/linkedin.png" alt="LinkedIn" />
-                </a>
-                <a href="https://github.com/Shashwat-19" target="_blank" rel="noopener">
-                    <img src="./assets/github.png" alt="GitHub" />
-                </a>
-                <a href="https://www.instagram.com/shashwat.56/" target="_blank" rel="noopener">
-                    <img src="./assets/insta.png" alt="Instagram" />
-                </a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2025 Shashwat. All rights reserved.</p>
-        </div>
-    </footer> -->
 </body>
 </html>
