@@ -1,73 +1,95 @@
-# React + TypeScript + Vite
+# ✨ Modern Professional Todo List
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div align="center">
+  <h3>Minimalist. Powerful. Beautiful.</h3>
+  <p>A feature-rich task management application built with <strong>React</strong>, <strong>TypeScript</strong>, and <strong>Vite</strong>.</p>
+</div>
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Overview
 
-## React Compiler
+This application redefines the classic "Todo List" by combining robust functionality with a stunning **Glassmorphism UI**. Designed for productivity enthusiasts, it offers a seamless experience on both desktop and mobile devices.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The tech stack has been modernized from Vanilla JS to a scalable **React + TypeScript** architecture, ensuring type safety, blazing fast performance, and easy maintainability.
 
-## Expanding the ESLint configuration
+## ✨ Key Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **🎨 Stunning UI**: A vibrant violet-blue gradient background with frosted glass cards ("Glassmorphism").
+- **📱 Fully Responsive**:
+  - **Broad Dashboard** on Desktop (900px width) with grid layouts.
+  - **Mobile Optimized** with stacked inputs and touch-friendly targets.
+- **🔥 Priority System**: Categorize tasks as **High**, **Medium**, or **Low** with visual color-coded badges.
+- **📅 Due Dates**: Set deadlines and track them easily.
+- **🔍 Smart Filtering**: Instantly toggle between **All**, **Active**, and **Completed** tasks.
+- **✏️ Inline Editing**: Fix typos or update tasks on the fly.
+- **💾 Auto-Save**: Your data persists automatically via LocalStorage.
+- **🎉 Gamified Experience**: Enjoy a confetti pop celebration when completing tasks!
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Core**: [React 18](https://reactjs.org/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Styling**: Pure CSS (Variables, Flexbox, Grid, Glassmorphism)
+- **Icons**: SVG Icons (Feather / Material Design style)
+- **Extras**: `canvas-confetti` for animations
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🏃‍♂️ Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm or yarn
+
+### Installation
+
+1.  **Clone the repository**
+
+    ```bash
+    git clone https://github.com/Shashwat-19/Todo-List.git
+    cd Todo-List
+    ```
+
+2.  **Install dependencies**
+
+    ```bash
+    npm install
+    ```
+
+3.  **Start the development server**
+
+    ```bash
+    npm run dev
+    ```
+
+4.  **Open in your browser**
+    Navigate to `http://localhost:5173` to view the app.
+
+## 🏗️ Project Structure
+
+```
+src/
+├── components/       # Reusable UI components
+│   ├── TodoForm.tsx  # Input area (Task, Priority, Date)
+│   ├── TodoList.tsx  # List container
+│   ├── TodoItem.tsx  # Individual task item (Animations, Actions)
+│   └── FilterBar.tsx # Filter toggles (All/Active/Completed)
+├── App.tsx           # Main controller (State, Layout)
+├── index.css         # Global styles & Glassmorphism theme
+└── main.tsx          # Entry point
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🤝 Contributing
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1.  Fork the project
+2.  Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
