@@ -1,127 +1,142 @@
-# ✨ Modern Professional Todo List
+# Modern Todo List
 
-<div align="center">
-  <h3>Minimalist. Powerful. Beautiful.</h3>
-  <p>A feature-rich task management application built with <strong>React</strong>, <strong>TypeScript</strong>, and <strong>Vite</strong>.</p>
-</div>
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=flat&logo=react&logoColor=%2361DAFB)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=flat&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=flat&logo=vite&logoColor=white)
 
----
+A beautiful, modern, and interactive Todo List application built with React, TypeScript, and Vite. Designed to help you stay organized and focused with a premium user experience.
 
-## 🚀 Overview
+## ✨ Features
 
-This application redefines the classic "Todo List" by combining robust functionality with a stunning **Glassmorphism UI**. Designed for productivity enthusiasts, it offers a seamless experience on both desktop and mobile devices.
+- **📝 Task Management**:  
+  Create, edit, and delete tasks with ease. The interface is designed for quick interactions, allowing you to manage your daily to-dos efficiently.
+- **🔥 Priority Levels**:  
+  Stay focused on what matters most. Assign priority levels (**Low**, **Medium**, **High**) to your tasks to visually categorize them and tackle urgent items first.
 
-The tech stack has been modernized from Vanilla JS to a scalable **React + TypeScript** architecture, ensuring type safety, blazing fast performance, and easy maintainability.
+- **📅 Due Dates**:  
+  Never miss a deadline. Set due dates for your tasks to keep track of your schedule.
 
-## ✨ Key Features
+- **📊 Progress Tracking**:  
+  Visualize your productivity with a dynamic circular progress bar. As you complete tasks, watch your progress grow and get motivated by encouraging status messages.
 
-- **🎨 Stunning UI**: A vibrant violet-blue gradient background with frosted glass cards ("Glassmorphism").
-- **📱 Fully Responsive**:
-  - **Broad Dashboard** on Desktop (900px width) with grid layouts.
-  - **Mobile Optimized** with stacked inputs and touch-friendly targets.
-- **🔥 Priority System**: Categorize tasks as **High**, **Medium**, or **Low** with visual color-coded badges.
-- **📅 Due Dates**: Set deadlines and track them easily.
-- **🔍 Smart Filtering**: Instantly toggle between **All**, **Active**, and **Completed** tasks.
-- **✏️ Inline Editing**: Fix typos or update tasks on the fly.
-- **💾 Auto-Save**: Your data persists automatically via LocalStorage.
-- **🎉 Gamified Experience**: Enjoy a confetti pop celebration when completing tasks!
+- **🎉 Celebration Effects**:  
+  Make productivity fun! Experience satisfying confetti animations whenever you mark a task as complete.
+
+- **🔍 Smart Filtering**:  
+  Focus on what's relevant. Filter your list to show **All**, **Active**, or **Completed** tasks to declutter your view.
+
+- **💾 Local Storage Persistence**:  
+  Your data is safe. All your tasks are automatically saved to your browser's local storage, so you can close the tab and return later without losing your list.
+
+- **🎨 Modern Design**:  
+  Enjoy a sleek, responsive interface featuring smooth transitions, glassmorphism effects, and a polished aesthetic suitable for all refined tastes.
 
 ## 🛠️ Tech Stack
 
-- **Core**: [React 18](https://reactjs.org/)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Build Tool**: [Vite](https://vitejs.dev/)
-- **Styling**: Pure CSS (Variables, Flexbox, Grid, Glassmorphism)
-- **Icons**: SVG Icons (Feather / Material Design style)
-- **Extras**: `canvas-confetti` for animations
+- **Frontend Framework**: [React 19](https://react.dev/) - The library for web and native user interfaces.
+- **Language**: [TypeScript](https://www.typescriptlang.org/) - JavaScript with syntax for types.
+- **Build Tool**: [Vite](https://vitejs.dev/) - Next Generation Frontend Tooling.
+- **Styling**: Vanilla CSS - Utilizing modern CSS variables, flexbox/grid, and responsive media queries.
+- **Linting**: ESLint - Find and fix problems in your JavaScript code.
 
-## 🏃‍♂️ Getting Started
+## 🚀 Getting Started
+
+Follow these steps to get the project up and running on your local machine.
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
-- npm or yarn
+Ensure you have **Node.js** installed on your system. You can verify it by running:
+
+```bash
+node -v
+```
 
 ### Installation
 
-1.  **Clone the repository**
+1.  **Clone the repository:**
 
     ```bash
-    git clone https://github.com/Shashwat-19/Todo-List.git
-    cd Todo-List
+    git clone https://github.com/your-username/todo-app.git
+    cd todo-app
     ```
 
-2.  **Install dependencies**
+2.  **Install dependencies:**
 
     ```bash
     npm install
     ```
 
-3.  **Start the development server**
+### Running the App
 
-    ```bash
-    npm run dev
-    ```
+Start the development server:
 
-4.  **Open in your browser**
-    Navigate to `http://localhost:5173` to view the app.
+```bash
+npm run dev
+```
 
-## 🏗️ Project Structure
+Open your browser and navigate to `http://localhost:5173` (or the URL shown in your terminal).
+
+## 📜 Available Scripts
+
+In the project directory, you can run:
+
+| Script            | Description                                                         |
+| :---------------- | :------------------------------------------------------------------ |
+| `npm run dev`     | Runs the app in development mode with HMR (Hot Module Replacement). |
+| `npm run build`   | Builds the app for production to the `dist` folder.                 |
+| `npm run lint`    | Runs ESLint to check for code quality and style issues.             |
+| `npm run preview` | Locally preview the production build.                               |
+
+## 📂 Project Structure
+
+A quick overview of the important files and directories:
 
 ```
 src/
-├── components/       # Reusable UI components
-│   ├── TodoForm.tsx  # Input area (Task, Priority, Date)
-│   ├── TodoList.tsx  # List container
-│   ├── TodoItem.tsx  # Individual task item (Animations, Actions)
-│   └── FilterBar.tsx # Filter toggles (All/Active/Completed)
-├── App.tsx           # Main controller (State, Layout)
-├── index.css         # Global styles & Glassmorphism theme
-└── main.tsx          # Entry point
+├── components/
+│   ├── FilterBar.tsx    # Controls for filtering tasks (All/Active/Completed)
+│   ├── TodoForm.tsx     # Input form to add new tasks with priority and date
+│   ├── TodoItem.tsx     # Individual task component with edit/delete actions
+│   └── TodoList.tsx     # Container for rendering the list of tasks
+├── App.tsx              # Main application logic (State management, Layout)
+├── index.css            # Global application styles, CSS variables, and themes
+├── main.tsx             # Application entry point
+└── vite-env.d.ts        # Vite type definitions
 ```
+
+## 🎨 Customization
+
+The application uses CSS variables for easy theming. You can find and modify these in `src/index.css`:
+
+```css
+:root {
+  --primary-color: #6c5ce7;
+  --secondary-color: #a29bfe;
+  --background-color: #f5f6fa;
+  /* ...modify these values to change the look and feel */
+}
+```
+
+## 🔮 Roadmap
+
+Future improvements planned for this project:
+
+- [ ] Dark Mode toggle 🌙
+- [ ] Drag and Drop task reordering ✋
+- [ ] Categories/Tags for tasks 🏷️
+- [ ] User Authentication (Cloud Sync) ☁️
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! If you have suggestions for improvements or bug fixes, please feel free to:
 
-1.  Fork the project
-2.  Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4.  Push to the branch (`git push origin feature/AmazingFeature`)
-5.  Open a Pull Request
+1.  Fork the repository.
+2.  Create a new branch (`git checkout -b feature/amazing-feature`).
+3.  Commit your changes (`git commit -m 'Add some amazing feature'`).
+4.  Push to the branch (`git push origin feature/amazing-feature`).
+5.  Open a Pull Request.
 
-## 📚 Documentation
+## 📄 License
 
-Comprehensive documentation for this project is available on [Hashnode](https://hashnode.com/@Shashwat56).
-
-> At present, this README serves as the primary source of documentation.
-
-## 📜 License
-
-This project is distributed under the MIT License.  
-For detailed licensing information, please refer to the [LICENSE](./LICENSE) file included in this repository.
-
-## 📩 Contact
-
-### Shashwat
-
-**Java Developer | Cloud & NoSQL Enthusiast**
-
-🔹 **Java** – OOP, Backend Systems, APIs, Automation  
-🔹 **Cloud & NoSQL** – Docker, AWS, MongoDB, Firebase Firestore  
-🔹 **UI/UX Design** – Scalable, user-focused, and visually engaging apps
-
----
-
-## 🚀 Open Source | Tech Innovation
-
-Building robust applications and leveraging cloud technologies for high-performance solutions.
-
----
-
-### 📌 Find me here:
-
-[<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" />](https://github.com/Shashwat-19) [<img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/shashwatk1956/) [<img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" />](mailto:shashwat1956@gmail.com) [<img src="https://img.shields.io/badge/Hashnode-2962FF?style=for-the-badge&logo=hashnode&logoColor=white" />](https://hashnode.com/@Shashwat56)
-[<img src="https://img.shields.io/badge/HackerRank-15%2B-2EC866?style=for-the-badge&logo=HackerRank&logoColor=white" />](https://www.hackerrank.com/profile/shashwat1956)
-
-Feel free to connect for tech collaborations, open-source contributions, or brainstorming innovative solutions!
+This project is open source and available under the [MIT License](LICENSE).
